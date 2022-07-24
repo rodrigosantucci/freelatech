@@ -14,7 +14,6 @@ public class Usuario {
 	private String nome;
 	
 	@Column(unique = true)
-	@Email
 	private String email;
 	
 	@Column(nullable = false,
@@ -22,7 +21,7 @@ public class Usuario {
 	private String senha;
 	private String data_criacao;
 	
-	@OneToOne(mappedBy = "tb_usuarios", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private Perfil perfil;
 	
 	
@@ -59,6 +58,12 @@ public class Usuario {
 	}
 	public void setData_criacao(String data_criacao) {
 		this.data_criacao = data_criacao;
+	}
+	public Perfil getPerfil() {
+		return perfil;
+	}
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 	
 	

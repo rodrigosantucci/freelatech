@@ -10,6 +10,8 @@ import com.br.freelatech.models.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
 	Usuario findByEmail(String email);
+
+	Usuario findOne(Long usuario_id);
 	
 
 }
