@@ -16,7 +16,7 @@ public class UsuarioService {
 	UsuarioRepository usuarioRepository;
 	
 	@Autowired
-	PasswordEncoder passwordEnconder;
+	PasswordEncoder passwordEncoder;
 	
 	public Usuario get(Long usuario_id) {
 		return usuarioRepository.findOne(usuario_id);
@@ -29,7 +29,7 @@ public class UsuarioService {
 	
 	
 	public Usuario save(Usuario usuario) {
-		usuario.setSenha(passwordEnconder.encode(usuario.getSenha()));
+		usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
 		return usuarioRepository.save(usuario);
 	}
 }

@@ -3,6 +3,7 @@ package com.br.freelatech.models;
 import javax.persistence.*;
 
 
+
 @Entity
 @Table(name = "tb_usuarios")
 public class Usuario {
@@ -13,6 +14,7 @@ public class Usuario {
 	
 	private String nome;
 	
+
 	@Column(unique = true)
 	private String email;
 	
@@ -65,10 +67,5 @@ public class Usuario {
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
-	
-	
-	
-	
-	
-	
+		
 }

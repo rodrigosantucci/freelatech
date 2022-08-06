@@ -1,5 +1,7 @@
 package com.br.freelatech.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,8 @@ public class LoginController {
 	@Autowired
 	@Qualifier("usuarioValidator")
 	Validator usuarioValidator;
+	
+	
 	
 	
 	@GetMapping("/login")
@@ -63,13 +67,18 @@ public class LoginController {
 				
 			});
 			
-		
+				model.addAttribute("error", sb);
+			} else {
+				
+				usuarioService.save(usuario);
+				return new ModelAndView("redirect:/login");
 			}
+		
+			model.addAttribute("usuario", usuario);
+			return new ModelAndView("login/cadastrar", model.asMap());
 		}
-		
-		
 		
 		
 	} 
 	
-}
+
