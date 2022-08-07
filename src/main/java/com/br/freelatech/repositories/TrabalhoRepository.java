@@ -17,15 +17,15 @@ import java.util.List;
 
 @Repository("trabalhoRepository")
 public interface TrabalhoRepository extends JpaRepository<Trabalho, Long>{
-	List<Trabalho> findByAuthor(Usuario autor);
+	List<Trabalho> findByAutor(Usuario autor);
 	
 	
-	@Query("SELECT t"
-			+"FROM proposta p"
-			+"JOIN p.trabalho t"
+	@Query("SELECT t "
+			+"FROM proposta p "
+			+"JOIN p.trabalho t "
 			+"WHERE t.autor = :usuario AND p.aceita = 1")
 	List<Trabalho> findByAutorContratado(@Param("usuario") Usuario usuario);
 	
-	Page<Trabalho> findByAutor(Usuario user, Pageable request);
+	Page<Trabalho> findByAutor(Usuario usuario, Pageable request);
 	
 }
