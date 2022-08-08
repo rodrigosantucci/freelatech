@@ -3,6 +3,7 @@ package com.br.freelatech.models;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "tb_trabalho")
 public class Trabalho {
 	
 	

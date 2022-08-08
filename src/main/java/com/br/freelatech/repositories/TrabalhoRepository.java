@@ -4,13 +4,17 @@ package com.br.freelatech.repositories;
 import com.br.freelatech.models.Usuario;
 import com.br.freelatech.models.Trabalho;
 
+
+
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
-import java.util.List;
 
 
 
@@ -21,9 +25,9 @@ public interface TrabalhoRepository extends JpaRepository<Trabalho, Long>{
 	
 	
 	@Query("SELECT t "
-			+"FROM proposta p "
+			+"FROM Proposta p "
 			+"JOIN p.trabalho t "
-			+"WHERE t.autor = :usuario AND p.aceita = 1")
+			+"WHERE t.autor = :usuario AND p.propostaAceita = 1")
 	List<Trabalho> findByAutorContratado(@Param("usuario") Usuario usuario);
 	
 	Page<Trabalho> findByAutor(Usuario usuario, Pageable request);

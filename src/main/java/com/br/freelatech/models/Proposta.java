@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 
 @Entity
+@Table(name = "tb_proposta")
 public class Proposta{
 
     @Id
