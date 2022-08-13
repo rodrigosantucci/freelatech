@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!-- <head th:include="frontend/partials/head(title=#{login.page_title})"></head> -->
+<head th:include="components/head(titulo=#{login.pagina_titulo})"></head>
 <body>
 
 
@@ -8,13 +8,13 @@
 <div class="container main-container">
     <div class="row">
         <div class="col-md-8">
-            <h1 th:text="#{login.page_title}"></h1>
-            <p th:if="${loginError}" class="error">Wrong user or password</p>
+            <h1 th:text="#{login.pagina_titulo}"></h1>
+            <p th:if="${loginError}" class="error">Usuário ou senha incorreto.</p>
             <form th:action="@{/login}" method="post">
                 <label for="email" th:text="#{login.email}"></label>
                 <input type="text" id="email" name="email" autofocus="autofocus" class="form-control" /> <br />
-                <label for="password" th:text="#{login.password}"></label>
-                <input type="password" id="password" name="password" class="form-control" /> <br />
+                <label for="senha" th:text="#{login.senha}"></label>
+                <input type="password" id="senha" name="senha" class="form-control" /> <br />
                 <button class="btn btn-success" th:text="#{login.btn}"></button>
             </form>
         </div>

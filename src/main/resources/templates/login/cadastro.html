@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="frontend/partials/head(title=#{register.page_title})"></head>
+<head th:include="components/head(titulo=#{registro.pagina_titulo})"></head>
 <body>
 
 
-<div th:replace="frontend/partials/menu"></div>
+<!-- <div th:replace="frontend/partials/menu"></div> -->
 <div class="container main-container">
     <div class="row">
         <div class="col-md-8">
-            <h1 th:text="#{register.page_title}"></h1>
+            <h1 th:text="#{registro.pagina_titulo}"></h1>
             <p th:if="${error}" class="error"><div class="alert alert-danger" th:utext="${error}"></div></p>
 
-            <form th:action="@{/register}" method="post">
+            <form th:action="@{/cadastro}" method="post">
                 <div class="form-group">
-                    <label for="name" th:text="#{register.name}"></label>
-                    <input type="text" id="name" name="name" autofocus="autofocus" required="required" class="form-control" th:value="${user?.name}" />
+                    <label for="name" th:text="#{registro.nome}"></label>
+                    <input type="text" id="name" name="name" autofocus="autofocus" required="required" class="form-control" th:value="${usuario?.nome}" />
                 </div>
                 <div class="form-group">
                     <label for="email" th:text="#{login.email}"></label>
-                    <input type="text" id="email" name="email" required="required" class="form-control" th:value="${user?.email}" /> <br />
+                    <input type="text" id="email" name="email" required="required" class="form-control" th:value="${usuario?.email}" /> <br />
                 </div>
                 <div class="form-group">
-                    <label for="password" th:text="#{login.password}"></label>
-                    <input type="password" id="password" name="password" required="required" class="form-control" th:value="${user?.password}" /> <br />
+                    <label for="password" th:text="#{login.senha}"></label>
+                    <input type="password" id="password" name="password" required="required" class="form-control" th:value="${usuario?.senha}" /> <br />
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success" th:text="#{register.btn}"></button>
+                    <button class="btn btn-success" th:text="#{registro.btn}"></button>
                 </div>
-                <p th:utext="#{register.already_registered('/login')}"></p>
+                <p th:utext="#{registro.ja_registrado('/login')}"></p>
             </form>
         </div>
     </div>

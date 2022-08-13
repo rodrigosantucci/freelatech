@@ -75,7 +75,7 @@ public class LoginController {
 			}
 		
 			model.addAttribute("usuario", usuario);
-			return new ModelAndView("login/cadastrar", model.asMap());
+			return new ModelAndView("login/cadastro", model.asMap());
 		}
 		
 		
