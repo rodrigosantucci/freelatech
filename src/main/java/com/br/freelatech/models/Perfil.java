@@ -5,6 +5,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
+@Table(name = "tb_perfil")
 public class Perfil {
 	
 	
