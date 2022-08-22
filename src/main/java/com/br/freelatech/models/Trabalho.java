@@ -1,5 +1,7 @@
 package com.br.freelatech.models;
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,14 +12,19 @@ public class Trabalho {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long trabalho_id;
+	private Integer trabalho_id;
 	
 	private String titulo;
+
 	private String descricao;
+
 	private Double orcamento;
 	private String tipo;
+
+	
 	private String experiencia;
-	private String data_criacao;
+
+	private Date data_criacao;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "autor_id")
@@ -27,11 +34,11 @@ public class Trabalho {
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 
-	public long getTrabalho_id() {
+	public Integer getTrabalho_id() {
 		return trabalho_id;
 	}
 
-	public void setTrabalho_id(long trabalho_id) {
+	public void setTrabalho_id(Integer trabalho_id) {
 		this.trabalho_id = trabalho_id;
 	}
 
@@ -75,11 +82,11 @@ public class Trabalho {
 		this.experiencia = experiencia;
 	}
 
-	public String getData_criacao() {
+	public Date getData_criacao() {
 		return data_criacao;
 	}
 
-	public void setData_criacao(String data_criacao) {
+	public void setData_criacao(Date data_criacao) {
 		this.data_criacao = data_criacao;
 	}
 

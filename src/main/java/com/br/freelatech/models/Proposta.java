@@ -1,6 +1,10 @@
 package com.br.freelatech.models;
 
+import java.util.Date;
+
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -9,20 +13,21 @@ public class Proposta{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(columnDefinition = "INTEGER(11)") // Fix of org.hibernate.tool.schema.spi.SchemaManagementException
-    private Long id;
+    private Integer proposta_id;
     private Double preco;
 
     @Column(length = 255)
     private String prazo;
 
-    private String dataCriacao;
+    private Date dataCriacao;
 
     @Column(length = 64000)
     private String proposta;
     
+    @Column(name = "aceita")
     private int propostaAceita = 0;
     
+    @Column(name = "fechado")
     private int statusProposta = 0;
 
     @ManyToOne
@@ -33,12 +38,12 @@ public class Proposta{
     private Trabalho trabalho;
 
 
-    public Long getId() {
-        return id;
+    public Integer getProposta_id() {
+        return proposta_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setProposta_id(Integer proposta_id) {
+        this.proposta_id = proposta_id;
     }
 
     public Double getPreco() {
@@ -57,11 +62,11 @@ public class Proposta{
         this.prazo = prazo;
     }
 
-    public String getDataCriacao() {
+    public Date getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setData_criacao(String dataCriacao) {
+    public void setData_criacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 

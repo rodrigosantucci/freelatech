@@ -7,21 +7,20 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_categoria")
-public class Categoria implements Serializable {
+public class Categoria  {
 	
-	private static final long serialVersionUID = 1L; 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long categoria_id;
+	private Integer categoria_id;
 	
 	private String nome;
 
-	public Long getCategoria_id() {
+	public Integer getCategoria_id() {
 		return categoria_id;
 	}
 
-	public void setCategoria_id(Long categoria_id) {
+	public void setCategoria_id(Integer categoria_id) {
 		this.categoria_id = categoria_id;
 	}
 
