@@ -19,7 +19,7 @@ public class Perfil {
 	
 	@OneToOne
 	@JsonBackReference
-	//@JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
+	@JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
 	private Usuario usuario;
 
 	public Integer getPerfil_id() {
