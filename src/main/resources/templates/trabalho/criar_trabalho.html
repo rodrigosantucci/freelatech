@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:include="components/head(title=#{job.create.title})">
 </head>
-<!--<div th:include="frontend/partials/head"></div>-->
+<div th:include="components/head"></div>
 <body>
-<div th:replace="frontend/partials/menu"></div>
-<div class="container main-container">
+    <div th:replace="components/menu"></div>
+    <div class="container main-container">
     <div class="row">
         <div class="col-md-8">
 
