@@ -18,24 +18,42 @@
                 </ul>
                 <ul class="nav nav-pills pull-right">
                     <li sec:authorize="! isAuthenticated()" role="presentation"><a th:href="@{/login}" th:text="#{menu.login}"></a></li>
+<<<<<<< HEAD
                     <li sec:authorize="! isAuthenticated()" role="presentation"><a th:href="@{/cadastrar}" th:text="#{menu.cadastrar}"></a></li>
+=======
+                    <li sec:authorize="! isAuthenticated()" role="presentation"><a th:href="@{/cadastro}" th:text="#{menu.cadastrar}"></a></li>
+>>>>>>> 20d65fd6463b5475f6649b7250631d775cc64f7e
                     <li sec:authorize="isAuthenticated()">
                         <a th:href="@{/perfil}" sec:authentication="principal.fullName"></a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
+<<<<<<< HEAD
                         <a th:href="@{/trabalho/create}" th:text="#{menu.publicar_trabalho}"></a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
                         <a th:href="@{/perfil} + '#bids'" th:text="#{menu.minhas_propostas}"></a>
+=======
+                        <a th:href="@{/trabalho/criar_trabalho}" th:text="#{menu.publicar_trabalho}"></a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a th:href="@{/profile} + '#bids'" th:text="#{menu.minhas_propostas}"></a>
+>>>>>>> 20d65fd6463b5475f6649b7250631d775cc64f7e
                     </li>
                     <li sec:authorize="isAuthenticated()">
                         <a th:href="@{/bid/my-contracts}" th:text="#{menu.meus_contratos}"></a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
+<<<<<<< HEAD
                         <a th:href="@{/job?filter=myjobs}" th:text="#{menu.meus_trabalhos}">Meus trabalhos</a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
                         <a th:href="@{/message}" th:text="#{menu.mensagens}">Mensagens</a>
+=======
+                        <a th:href="@{/job?filter=myjobs}" th:text="#{menu.meus_trabalhos}">My jobs</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a th:href="@{/message}" th:text="#{menu.mensagens}">Messages</a>
+>>>>>>> 20d65fd6463b5475f6649b7250631d775cc64f7e
                     </li>
                     
                     <li sec:authorize="isAuthenticated()">
