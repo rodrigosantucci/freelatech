@@ -18,28 +18,29 @@
                 </ul>
                 <ul class="nav nav-pills pull-right">
                     <li sec:authorize="! isAuthenticated()" role="presentation"><a th:href="@{/login}" th:text="#{menu.login}"></a></li>
-                    <li sec:authorize="! isAuthenticated()" role="presentation"><a th:href="@{/register}" th:text="#{menu.cadastro}"></a></li>
+                    <li sec:authorize="! isAuthenticated()" role="presentation"><a th:href="@{/cadastrar}" th:text="#{menu.cadastrar}"></a></li>
                     <li sec:authorize="isAuthenticated()">
                         <a th:href="@{/perfil}" sec:authentication="principal.fullName"></a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <a th:href="@{/job/create}" th:text="#{menu.post_job}"></a>
+                        <a th:href="@{/trabalho/create}" th:text="#{menu.publicar_trabalho}"></a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <a th:href="@{/profile} + '#bids'" th:text="#{menu.my_bids}"></a>
+                        <a th:href="@{/perfil} + '#bids'" th:text="#{menu.minhas_propostas}"></a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <a th:href="@{/bid/my-contracts}" th:text="#{menu.my_contracts}"></a>
+                        <a th:href="@{/bid/my-contracts}" th:text="#{menu.meus_contratos}"></a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <a th:href="@{/job?filter=myjobs}" th:text="#{menu.my_jobs}">My jobs</a>
+                        <a th:href="@{/job?filter=myjobs}" th:text="#{menu.meus_trabalhos}">Meus trabalhos</a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <a th:href="@{/message}" th:text="#{menu.messages}">Messages</a>
+                        <a th:href="@{/message}" th:text="#{menu.mensagens}">Mensagens</a>
                     </li>
                     
                     <li sec:authorize="isAuthenticated()">
-                        <a th:href="@{/logout}" th:text="#{menu.logout}">Log out</a>
+                        <a th:href="@{/logout}
+                        " th:text="#{menu.logout}">Log out</a>
                     </li>
                     
                     <li><a href="?locale=eng_US">En</a></li>
