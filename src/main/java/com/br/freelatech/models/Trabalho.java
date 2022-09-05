@@ -12,7 +12,7 @@ public class Trabalho {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer trabalho_id;
+	private Long trabalho_id;
 	
 	private String titulo;
 
@@ -34,11 +34,11 @@ public class Trabalho {
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 
-	public Integer getTrabalho_id() {
+	public Long getTrabalho_id() {
 		return trabalho_id;
 	}
 
-	public void setTrabalho_id(Integer trabalho_id) {
+	public void setTrabalho_id(Long trabalho_id) {
 		this.trabalho_id = trabalho_id;
 	}
 

@@ -11,9 +11,9 @@ public abstract class AbstratoController {
     @Autowired
     UsuarioService usuarioService;
     /**
-     * Get logged user
+     * Recupera usuario logado
      *
-     * @return net.vatri.freelanceplatform.models.User
+     * @return models.Usuario
      **/
     protected Usuario getUsuarioAtual(){
 

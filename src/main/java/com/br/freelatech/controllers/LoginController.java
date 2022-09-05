@@ -1,19 +1,19 @@
 package com.br.freelatech.controllers;
 
-import javax.validation.Valid;
 
+import com.br.freelatech.models.Usuario;
+import com.br.freelatech.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.thymeleaf.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.thymeleaf.util.StringUtils;
+import javax.validation.Valid;
 
-import com.br.freelatech.models.Usuario;
-import com.br.freelatech.services.UsuarioService;
 
 
 

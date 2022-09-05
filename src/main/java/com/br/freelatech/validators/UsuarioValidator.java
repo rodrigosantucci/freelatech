@@ -1,15 +1,17 @@
 package com.br.freelatech.validators;
 
+import com.br.freelatech.models.Usuario;
+import com.br.freelatech.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.br.freelatech.models.Usuario;
-import com.br.freelatech.repositories.UsuarioRepository;
 
 
-public class UsuarioValidator implements Validator{
+
+
+public class UsuarioValidator implements Validator {
 	
 	@Autowired
 	UsuarioRepository usuarioRepository;

@@ -1,6 +1,5 @@
 package com.br.freelatech.models;
 
-import java.io.Serializable;
 
 import javax.persistence.*;
 

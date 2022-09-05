@@ -1,10 +1,7 @@
 package com.br.freelatech.models;
 
-import java.util.Date;
-
 import javax.persistence.*;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -13,13 +10,13 @@ public class Proposta{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer proposta_id;
+    private Long proposta_id;
     private Double preco;
 
     @Column(length = 255)
     private String prazo;
 
-    private Date dataCriacao;
+    private String dataCriacao;
 
     @Column(length = 64000)
     private String proposta;
@@ -38,11 +35,11 @@ public class Proposta{
     private Trabalho trabalho;
 
 
-    public Integer getProposta_id() {
+    public Long getProposta_id() {
         return proposta_id;
     }
 
-    public void setProposta_id(Integer proposta_id) {
+    public void setProposta_id(Long proposta_id) {
         this.proposta_id = proposta_id;
     }
 
@@ -62,11 +59,11 @@ public class Proposta{
         this.prazo = prazo;
     }
 
-    public Date getDataCriacao() {
+    public String getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setData_criacao(Date dataCriacao) {
+    public void setData_criacao(String dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 

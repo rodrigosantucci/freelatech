@@ -1,5 +1,7 @@
 package com.br.freelatech.models;
 
+
+import org.hibernate.validator.constraints.*;
 import javax.persistence.*;
 
 
@@ -10,12 +12,13 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer usuario_id;
+	private Long usuario_id;
 	
 	private String nome;
 	
 
 	@Column(unique = true)
+	@Email
 	private String email;
 	
 	@Column(nullable = false,
@@ -31,10 +34,10 @@ public class Usuario {
 	
 	
 	
-	public Integer getUsuario_id() {
+	public Long getUsuario_id() {
 		return usuario_id;
 	}
-	public void setUsuario_id(Integer usuario_id) {
+	public void setUsuario_id(Long usuario_id) {
 		this.usuario_id = usuario_id;
 	}
 	public String getNome() {
