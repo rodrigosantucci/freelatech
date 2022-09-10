@@ -11,7 +11,7 @@ public class Perfil {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer perfil_id;
+	private Long id;
 	
 	private String biografia;
 	private String social;
@@ -19,16 +19,10 @@ public class Perfil {
 	
 	@OneToOne
 	@JsonBackReference
-	@JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
+	@JoinColumn(name = "id", referencedColumnName = "usuario_id")
 	private Usuario usuario;
 
-	public Integer getPerfil_id() {
-		return perfil_id;
-	}
-
-	public void setPerfil_id(Integer perfil_id) {
-		this.perfil_id = perfil_id;
-	}
+	
 
 	public String getBiografia() {
 		return biografia;
@@ -60,6 +54,14 @@ public class Perfil {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

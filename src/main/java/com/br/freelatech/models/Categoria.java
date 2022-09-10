@@ -11,17 +11,12 @@ public class Categoria  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer categoria_id;
+	private Integer id;
+	
+
 	
 	private String nome;
 
-	public Integer getCategoria_id() {
-		return categoria_id;
-	}
-
-	public void setCategoria_id(Integer categoria_id) {
-		this.categoria_id = categoria_id;
-	}
 
 	public String getNome() {
 		return nome;
@@ -29,6 +24,14 @@ public class Categoria  {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	

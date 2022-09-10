@@ -10,7 +10,8 @@ public class Proposta{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long proposta_id;
+    private Long id;
+    
     private Double preco;
 
     @Column(length = 255)
@@ -25,7 +26,7 @@ public class Proposta{
     private int propostaAceita = 0;
     
     @Column(name = "fechado")
-    private int statusProposta = 0;
+    private int fechado = 0;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
@@ -35,12 +36,15 @@ public class Proposta{
     private Trabalho trabalho;
 
 
-    public Long getProposta_id() {
-        return proposta_id;
+
+
+    
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setProposta_id(Long proposta_id) {
-        this.proposta_id = proposta_id;
+    public void setDataCriacao(String dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
     public Double getPreco() {
@@ -83,12 +87,12 @@ public class Proposta{
 		this.propostaAceita = propostaAceita;
 	}
 
-	public int getStatusProposta() {
-		return statusProposta;
+	public int getFechado() {
+		return fechado;
 	}
 
-	public void setStatusProposta(int statusProposta) {
-		this.statusProposta = statusProposta;
+	public void setFechado(int fechado) {
+		this.fechado = fechado;
 	}
 
 	public Usuario getUsuario() {
@@ -105,5 +109,9 @@ public class Proposta{
 
     public void setTrabalho(Trabalho trabalho) {
         this.trabalho = trabalho;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

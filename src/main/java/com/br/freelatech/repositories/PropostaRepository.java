@@ -12,7 +12,8 @@ import java.util.List;
 
 
 
-@Repository("tb_proposta")
+
+@Repository("propostaRepository")
 public interface PropostaRepository extends JpaRepository<Proposta, Long> {
 
     List<Proposta> findByUsuarioIdAndTrabalhoId(Long usuarioId, Long trabalhoId);
@@ -23,8 +24,8 @@ public interface PropostaRepository extends JpaRepository<Proposta, Long> {
 			+ " FROM Proposta b"
 			+ " JOIN b.trabalho j"
 			+ " WHERE j.autor = :eu ")
-	List<Proposta> findByUsuarioTrabalhos(@Param("eu") Usuario me);
+	List<Proposta> findByUsuarioTrabalhos(@Param("eu") Usuario eu);
 	
-    List<Proposta> findByFechadoAndUsuario(int closed, Usuario usuario);
+    List<Proposta> findByFechadoAndUsuario(int fechado, Usuario usuario);
     
 }

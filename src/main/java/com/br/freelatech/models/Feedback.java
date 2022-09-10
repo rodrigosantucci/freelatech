@@ -6,19 +6,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "tb_categoria")
 public class Feedback {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long feedback_id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "proposta_id", nullable = true)
     private Proposta proposta;
 
+    
     private Integer clienteAvaliacao;
     private String clienteFeedback;
 
@@ -26,8 +29,8 @@ public class Feedback {
     private String contratanteFeedback;
 
     
-    public Long getFeedback_id() {
-        return feedback_id;
+    public Long getId() {
+        return id;
     }
     public Proposta getProposta() {
         return proposta;
@@ -44,8 +47,9 @@ public class Feedback {
     public String getContratanteFeedback() {
         return contratanteFeedback;
     }
-    public void setFeedback_id(Long feedback_id) {
-        this.feedback_id = feedback_id;
+
+    public void setId(Long id) {
+        this.id = id;
     }
     public void setProposta(Proposta proposta) {
         this.proposta = proposta;
@@ -62,6 +66,7 @@ public class Feedback {
     public void setContratanteFeedback(String contratanteFeedback) {
         this.contratanteFeedback = contratanteFeedback;
     }
+   
 
 
     

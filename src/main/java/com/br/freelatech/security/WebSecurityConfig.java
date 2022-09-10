@@ -1,5 +1,7 @@
 package com.br.freelatech.security;
 
+import javax.swing.text.html.HTML;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,6 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity httpSecurity) throws Exception{
 
     	httpSecurity
+			.csrf().disable()	 
 	        .authorizeRequests()
 	        .antMatchers("/", "/css/**", "/favicon.ico").permitAll()
 	        .antMatchers("/login", "/cadastro", "/trabalho", "/trabalho/ver/*").permitAll()
@@ -28,7 +31,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	            	.logoutUrl("/logout")
 	            	.logoutSuccessUrl("/")
 	                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
-
     }
 
 }

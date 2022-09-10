@@ -38,7 +38,7 @@ public class TrabalhoService {
         List<Trabalho> result = trabalhoRepository.findAll();
 
         result.sort( (j1,j2) -> {
-            return j1.getTrabalho_id() > j2.getTrabalho_id() ? -1 : 0;
+            return j1.getId() > j2.getId() ? -1 : 0;
         } );
 
         return result;
@@ -55,7 +55,7 @@ public class TrabalhoService {
 
         if(result != null) {
 	        result.sort( (j1,j2) -> {
-	            return j1.getTrabalho_id() > j2.getTrabalho_id() ? -1 : 0;
+	            return j1.getId() > j2.getId() ? -1 : 0;
 	        } );
         }
 
@@ -74,7 +74,7 @@ public class TrabalhoService {
         
 		PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.DESC, "id");
         
-        Usuario usuario = (Usuario) filter.get("usuario");
+        Usuario usuario = (Usuario) filter.get("id");
         if(usuario != null) {
         	return trabalhoRepository.findByAutor(usuario, request);
         } else {

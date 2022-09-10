@@ -7,7 +7,6 @@ import com.br.freelatech.models.Proposta;
 import com.br.freelatech.services.PropostaService;
 import com.br.freelatech.services.CategoriaService;
 import com.br.freelatech.services.FeedbackService;
-// import com.br.freelatech.services.FeedbackService;
 import com.br.freelatech.services.TrabalhoService;
 import com.br.freelatech.util.FreelatechHelper;
 
@@ -40,7 +39,7 @@ public class TrabalhoController extends AbstratoController{
     @Autowired
     FeedbackService feedbackService;
     
-    @Value( "${freelancer.job.page_size}" )
+    @Value( "${freelatech.trabalho.page_size}" )
     private int jobPageSize;
     
     
@@ -92,7 +91,7 @@ public class TrabalhoController extends AbstratoController{
         // Check if logged in:
         Usuario currentUser = super.getUsuarioAtual();
         if( currentUser != null){
-            minhaProposta = propostaService.getUsuarioPropostaPorTrabalho(currentUser, trabalho);
+            minhaProposta = propostaService.getUsuarioPropostaByTrabalho(currentUser, trabalho);
             if(minhaProposta != null) {
 	        	// New line to <br>
 	            minhaProposta.setProposta(FreelatechHelper.nl2br(minhaProposta.getProposta()));
@@ -165,7 +164,7 @@ public class TrabalhoController extends AbstratoController{
         } else {
             trabalhoSalvo = trabalhoService.add(trabalho);
         }
-        return "redirect:/trabalho/ver/" + trabalhoSalvo.getTrabalho_id();
+        return "redirect:/trabalho/ver/" + trabalhoSalvo.getId();
     }
 
     @GetMapping("/propostas/{trabalhoId}")
@@ -175,7 +174,7 @@ public class TrabalhoController extends AbstratoController{
     	
     	Usuario eu = getUsuarioAtual();
     	
-    	if( trabalho == null || trabalho.getAutor().getUsuario_id() != eu.getUsuario_id() ) {
+    	if( trabalho == null || trabalho.getAutor().getId() != eu.getId() ) {
     		System.out.println("Nenhum trabalho encontrado");
     		return "redirect:/trabalho/ver/" + trabalhoId;
     	}

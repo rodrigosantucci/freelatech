@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 
 
-@Repository("tb_feedback")
+@Repository("feedbackRepository")
 public interface FeedbackRepository extends JpaRepository<Feedback, Long>{
 
     Feedback findByProposta(Proposta proposta);

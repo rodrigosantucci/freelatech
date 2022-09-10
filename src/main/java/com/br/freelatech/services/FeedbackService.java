@@ -22,8 +22,8 @@ public class FeedbackService {
     }
 
 
-    public Feedback get(Long feedback_id) {
-        return feedbackRepository.findOne(feedback_id);
+    public Feedback get(Long id) {
+        return feedbackRepository.findOne(id);
     }
 
     public Feedback findByProposta(Proposta proposta) {

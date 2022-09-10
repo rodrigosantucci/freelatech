@@ -22,13 +22,13 @@ public class PropostaService {
         return propostaRepository.save(proposta);
     }
 
-    public Proposta get(Long proposta_id) {
-        return propostaRepository.findOne(proposta_id);
+    public Proposta get(Long id) {
+        return propostaRepository.findOne(id);
     }
 
-    public Proposta getUsuarioPropostaPorTrabalho(Usuario usuario, Trabalho trabalho) {
+    public Proposta getUsuarioPropostaByTrabalho(Usuario usuario, Trabalho trabalho) {
 
-        List<Proposta> propostas = propostaRepository.findByUsuarioIdAndTrabalhoId(usuario.getUsuario_id(), trabalho.getTrabalho_id());
+        List<Proposta> propostas = propostaRepository.findByUsuarioIdAndTrabalhoId(usuario.getId(), trabalho.getId());
 
         if(propostas.isEmpty()){
 
@@ -50,7 +50,7 @@ public class PropostaService {
 
     }
 
-    public List<Proposta> findPorUsuario(Usuario usuario) {
+    public List<Proposta> findByUsuario(Usuario usuario) {
         return propostaRepository.findByUsuario(usuario);
     }
 
@@ -68,8 +68,8 @@ public class PropostaService {
         return propostaRepository.findByUsuarioTrabalhos(usuario);
     }
 
-    public List<Proposta> findByFechadoAndUsuario(int statusProposta, Usuario usuario) {
-        return propostaRepository.findByFechadoAndUsuario(statusProposta, usuario);
+    public List<Proposta> findByFechadoAndUsuario(int fechado, Usuario usuario) {
+        return propostaRepository.findByFechadoAndUsuario(fechado, usuario);
     }
 
 }

@@ -20,8 +20,8 @@ public class UsuarioService {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
-	public Usuario get(Long usuario_id) {
-		return usuarioRepository.findOne(usuario_id);
+	public Usuario get(Long id) {
+		return usuarioRepository.findOne(id);
 	}
 	
 	

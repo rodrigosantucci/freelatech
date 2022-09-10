@@ -2,7 +2,7 @@ package com.br.freelatech.services;
 
 import com.br.freelatech.models.Usuario;
 import com.br.freelatech.repositories.UsuarioRepository;
-import com.br.freelatech.security.UsuarioDetalheImpl;
+import com.br.freelatech.security.UsuarioDetailsImpl;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class UsuarioDetalheServiceImpl implements UserDetailsService {
+public class UsuarioDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired UsuarioRepository usuarioRepository;
 	
@@ -36,9 +36,9 @@ public class UsuarioDetalheServiceImpl implements UserDetailsService {
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
 		grantedAuthorities.add(new SimpleGrantedAuthority("usuario"));
 		
-		UsuarioDetalheImpl usuarioDetalhes = new UsuarioDetalheImpl(usuario.getEmail(), usuario.getSenha(), grantedAuthorities);
-		usuarioDetalhes.setNomeCompleto(usuario.getNome());
-		return usuarioDetalhes;
+		UsuarioDetailsImpl usuarioDetails = new UsuarioDetailsImpl(usuario.getEmail(), usuario.getSenha(), grantedAuthorities);
+		usuarioDetails.setNomeCompleto(usuario.getNome());
+		return usuarioDetails;
 		
 	}
 

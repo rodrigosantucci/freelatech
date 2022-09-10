@@ -4,14 +4,14 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
-public class UsuarioDetalheImpl extends org.springframework.security.core.userdetails.User {
+public class UsuarioDetailsImpl extends org.springframework.security.core.userdetails.User {
 	
 	
 	private static final long serialVersionUID = 1L;
 	
 	String nomeCompleto;
 	
-	public UsuarioDetalheImpl(String username, String senha, Collection<? extends GrantedAuthority> authorities) {
+	public UsuarioDetailsImpl(String username, String senha, Collection<? extends GrantedAuthority> authorities) {
 		super(username, senha, authorities);
 	}
 	
