@@ -1,22 +1,16 @@
 package com.br.freelatech.models;
 
-
 import javax.persistence.*;
-
 
 @Entity
 @Table(name = "tb_categoria")
-public class Categoria  {
-	
+public class Categoria {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
+	private Long id;
 
-	
 	private String nome;
-
 
 	public String getNome() {
 		return nome;
@@ -26,13 +20,12 @@ public class Categoria  {
 		this.nome = nome;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
+
 }

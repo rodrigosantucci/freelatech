@@ -1,19 +1,14 @@
 package com.br.freelatech.models;
 
-import java.util.Date;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_trabalho")
 public class Trabalho {
-	
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 
 	private String titulo;
 
@@ -22,20 +17,17 @@ public class Trabalho {
 	private Double orcamento;
 	private String tipo;
 
-	
 	private String experiencia;
 
-	private Date data_criacao;
-	
+	private String data_criacao;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "autor_id")
 	private Usuario autor;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
-
-
 
 	public String getTitulo() {
 		return titulo;
@@ -77,11 +69,11 @@ public class Trabalho {
 		this.experiencia = experiencia;
 	}
 
-	public Date getData_criacao() {
+	public String getData_criacao() {
 		return data_criacao;
 	}
 
-	public void setData_criacao(Date data_criacao) {
+	public void setData_criacao(String data_criacao) {
 		this.data_criacao = data_criacao;
 	}
 
@@ -108,7 +100,5 @@ public class Trabalho {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
 
-	
 }

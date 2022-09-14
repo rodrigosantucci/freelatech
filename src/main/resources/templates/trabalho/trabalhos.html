@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="components/head(title='Find jobs')">
+</head>
+<body>
+    <div th:replace="components/menu"></div>
+    <div class="container main-container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 th:if="${is_my_trabalhos_pagina} == false" th:text="#{trabalho.lista.titulo_recentes}">Recent jobs</h1>
+                <h1 th:if="${is_my_trabalhos_pagina} == true" th:text="#{menu.meus_trabalhos}">My jobs</h1>
+
+                <table class="table table-stripped">
+                    <tr>
+                        <th th:text="#{trabalho}">Job title</th>
+                        <th th:text="#{descricao}">Description</th>
+                        <th> </th>
+                    </tr>
+
+                    <tr th:each="trabalho : ${trabalhos_pagina.content}">
+                        <td th:text="'#' + ${trabalho.id} +' '+ ${trabalho.titulo}"></td>
+                        <td>
+                            <span class="job-list-description" th:utext="${trabalho.descricao}"></span>
+                            <p>&nbsp;</p>
+                            <p>
+                                <i class="glyphicon glyphicon-time"></i> <span th:text="${trabalho.data_criacao}"></span><br />
+                                <i class="glyphicon glyphicon-usd"></i>
+                                <span th:text="${trabalho.orcamento != null ? trabalho.orcamento : ''}"></span>
+                                (<span th:text="${trabalho.tipo}"></span>)
+                                /
+                                <span th:text="${trabalho.experiencia}"></span>
+                            </p>
+                        </td>
+                        <td><a th:href="@{'/trabalho/ver/' + ${trabalho.id}}" class="btn btn-primary" th:text="#{trabalho.lista.visualizar}">View</a></td>
+                    </tr>
+
+                </table>
+
+                <ul class="pagination">
+					<li th:each="i : ${#numbers.sequence( 1, trabalhos_pagina.totalPages)}">
+						<a th:href="${pagina_url + '&amp;pagina=' + i}"
+						   th:text="${i}"
+						   th:class="${i == trabalhos_pagina.number + 1 ? 'bold' : ''}">-999</a>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    $('.job-list-description').each(function(){
+        var v = $(this).html();
+        var len = v.length;
+        var maxLen = 350;
+        v = v.substring(0, maxLen);
+        v = v.trim();
+        if(len > maxLen){
+            v += "...";
+        }
+        $(this).html(v);
+    });
+</script>
+</body>
+</html>
+

@@ -1,6 +1,5 @@
 package com.br.freelatech.services;
 
-
 import com.br.freelatech.models.Trabalho;
 import com.br.freelatech.models.Usuario;
 import com.br.freelatech.repositories.TrabalhoRepository;
@@ -13,73 +12,71 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-
 @Service
 public class TrabalhoService {
-	
 
     @Autowired
     TrabalhoRepository trabalhoRepository;
 
-    public Trabalho get(long id){
+    public Trabalho get(long id) {
         return trabalhoRepository.findOne(id);
     }
 
-    public Trabalho add(Trabalho trabalho){
+    public Trabalho add(Trabalho trabalho) {
 
-        trabalho.setTipo( trabalho.getTipo().toLowerCase() );
-        trabalho.setExperiencia( trabalho.getExperiencia().toLowerCase() );
+        trabalho.setTipo(trabalho.getTipo().toLowerCase());
+        trabalho.setExperiencia(trabalho.getExperiencia().toLowerCase());
 
         return trabalhoRepository.save(trabalho);
     }
 
-    public List<Trabalho> list(){
+    public List<Trabalho> list() {
 
         List<Trabalho> result = trabalhoRepository.findAll();
 
-        result.sort( (j1,j2) -> {
+        result.sort((j1, j2) -> {
             return j1.getId() > j2.getId() ? -1 : 0;
-        } );
+        });
 
         return result;
     }
-    
-    public List<Trabalho> list(Map<String,Object> filter){
+
+    public List<Trabalho> list(Map<String, Object> filter) {
 
         List<Trabalho> result = null;
         Usuario usr = (Usuario) filter.get("usuario");
-        
-        if( usr != null) {
-        	result = trabalhoRepository.findByAutor(usr);
+
+        if (usr != null) {
+            result = trabalhoRepository.findByAutor(usr);
         }
 
-        if(result != null) {
-	        result.sort( (j1,j2) -> {
-	            return j1.getId() > j2.getId() ? -1 : 0;
-	        } );
+        if (result != null) {
+            result.sort((j1, j2) -> {
+                return j1.getId() > j2.getId() ? -1 : 0;
+            });
         }
 
         return result;
     }
-    
-    public List<Trabalho> findByAutor(Usuario usuario){
-    	return trabalhoRepository.findByAutor(usuario);
+
+    public List<Trabalho> findByAutor(Usuario usuario) {
+        return trabalhoRepository.findByAutor(usuario);
     }
 
-	public List<Trabalho> findContratadoTrabalhosByAutor(Usuario usuario){
-		return trabalhoRepository.findByAutorContratado(usuario);
-	}
-	
-	public Page<Trabalho> findAllPaged(Map<String, Object> filter, Integer pageNumber, int pageSize) {
-        
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.DESC, "id");
-        
+    public List<Trabalho> findContratadoTrabalhosByAutor(Usuario usuario) {
+        return trabalhoRepository.findByAutorContratado(usuario);
+    }
+
+    public Page<Trabalho> findAllPaged(Map<String, Object> filter, Integer pageNumber, int pageSize) {
+
+        PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.DESC, "id");
+
         Usuario usuario = (Usuario) filter.get("id");
-        if(usuario != null) {
-        	return trabalhoRepository.findByAutor(usuario, request);
+        if (usuario != null) {
+            return trabalhoRepository.findByAutor(usuario, request);
         } else {
-        	return trabalhoRepository.findAll(request);
+            return trabalhoRepository.findAll(request);
         }
-    
-	}
+
+    }
 }

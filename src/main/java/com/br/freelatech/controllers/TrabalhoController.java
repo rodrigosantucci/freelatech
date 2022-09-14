@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/trabalho")
-public class TrabalhoController extends AbstratoController{
+public class TrabalhoController extends AbstratoController {
 
     @Autowired
     TrabalhoService trabalhoService;
@@ -35,51 +35,51 @@ public class TrabalhoController extends AbstratoController{
 
     @Autowired
     PropostaService propostaService;
-    
+
     @Autowired
     FeedbackService feedbackService;
-    
-    @Value( "${freelatech.trabalho.page_size}" )
-    private int jobPageSize;
-    
-    
-    @GetMapping
-    public String listarTrabalhos(Model model, HttpServletRequest request){
-    	
-    	String pageUrl = "/trabalho?a=a"; 
-    	
-    	String filt = request.getParameter("filter");
-    	String pPage = request.getParameter("page");
-    	
-    	Usuario eu = getUsuarioAtual();
-    	boolean isMyJobsPage = false;
-    	
-    	Map<String, Object> filter = new HashMap<>();
 
-    	if( filt != null && filt.equals("myjobs") && eu != null) {
-    		
-    		filter.put("usuario", eu );
-    		pageUrl = "/trabalho?filter=myjobs";
-            isMyJobsPage = true;
-    	
-    	}
-    	
-    	int pageNo = 1;
-    	if( pPage != null ) {
-    		pageNo = Integer.parseInt(pPage);
-    	}
-    	
-    	Page<Trabalho> jobsPage = trabalhoService.findAllPaged(filter, pageNo, jobPageSize);
-    	
-    	model.addAttribute("is_my_jobs_page", isMyJobsPage);
-    	model.addAttribute("jobs_page", jobsPage);
-    	model.addAttribute("page_url", pageUrl);
-    	
+    @Value("${freelatech.trabalho.page_size}")
+    private int jobPageSize;
+
+    @GetMapping
+    public String listarTrabalhos(Model model, HttpServletRequest request) {
+
+        String paginaUrl = "/trabalho?a=a";
+
+        String filt = request.getParameter("filter");
+        String pPage = request.getParameter("page");
+
+        Usuario eu = getUsuarioAtual();
+        boolean isMytrabalhosPagina = false;
+
+        Map<String, Object> filter = new HashMap<>();
+
+        if (filt != null && filt.equals("myjobs") && eu != null) {
+
+            filter.put("usuario", eu);
+            paginaUrl = "/trabalho?filter=myjobs";
+            isMytrabalhosPagina = true;
+
+        }
+
+        int pageNo = 1;
+        if (pPage != null) {
+            pageNo = Integer.parseInt(pPage);
+        }
+
+        Page<Trabalho> trabalhosPagina = trabalhoService.findAllPaged(filter, pageNo, jobPageSize);
+
+        model.addAttribute("is_my_trabalhos_pagina", isMytrabalhosPagina);
+        model.addAttribute("trabalhos_pagina", trabalhosPagina);
+        model.addAttribute("pagina_url", paginaUrl);
+
         return "trabalho/trabalhos";
+
     }
 
-    @GetMapping({"/ver/{id}", "/{id}}" })
-    public String viewJob(Model model, @PathVariable("id") long id){
+    @GetMapping({ "/ver/{id}", "/{id}}" })
+    public String viewJob(Model model, @PathVariable("id") long id) {
 
         Trabalho trabalho = trabalhoService.get(id);
 
@@ -90,52 +90,52 @@ public class TrabalhoController extends AbstratoController{
 
         // Check if logged in:
         Usuario currentUser = super.getUsuarioAtual();
-        if( currentUser != null){
+        if (currentUser != null) {
             minhaProposta = propostaService.getUsuarioPropostaByTrabalho(currentUser, trabalho);
-            if(minhaProposta != null) {
-	        	// New line to <br>
-	            minhaProposta.setProposta(FreelatechHelper.nl2br(minhaProposta.getProposta()));
+            if (minhaProposta != null) {
+                // New line to <br>
+                minhaProposta.setProposta(FreelatechHelper.nl2br(minhaProposta.getProposta()));
             }
         }
 
         model.addAttribute("minhaProposta", minhaProposta);
-        
+
         model.addAttribute("eu", getUsuarioAtual());
 
         // Calcular cliente nota:
         long avgClienteFeedback = 0;
-		int totalFeedbackNo = 0;
+        int totalFeedbackNo = 0;
         List<Feedback> feedbacks = feedbackService.findByCliente(trabalho.getAutor());
-        if(feedbacks.size() > 0) {
-			int sum = 0;
-			int no = 0;
-			for (Feedback f : feedbacks) {
-				sum += f.getClienteAvaliacao();
-				no++;
-			}
-			avgClienteFeedback = sum / no;
-			totalFeedbackNo = feedbacks.size();
+        if (feedbacks.size() > 0) {
+            int sum = 0;
+            int no = 0;
+            for (Feedback f : feedbacks) {
+                sum += f.getClienteAvaliacao();
+                no++;
+            }
+            avgClienteFeedback = sum / no;
+            totalFeedbackNo = feedbacks.size();
         }
-		// Calcular contratante nota:
-		List<Trabalho> trabalhos = trabalhoService.findByAutor(trabalho.getAutor());
-		List<Trabalho> contratadosTrabalho = trabalhoService.findContratadoTrabalhosByAutor(trabalho.getAutor());
-		double totalJobsNo = trabalhos.size();
-		double hiredJobsNo = contratadosTrabalho.size();
-		double hireRate = (hiredJobsNo / totalJobsNo) * 100; // percent
+        // Calcular contratante nota:
+        List<Trabalho> trabalhos = trabalhoService.findByAutor(trabalho.getAutor());
+        List<Trabalho> contratadosTrabalho = trabalhoService.findContratadoTrabalhosByAutor(trabalho.getAutor());
+        double totalJobsNo = trabalhos.size();
+        double hiredJobsNo = contratadosTrabalho.size();
+        double hireRate = (hiredJobsNo / totalJobsNo) * 100; // percent
 
-		model.addAttribute("average_client_feedback_rate", avgClienteFeedback);
-		model.addAttribute("reviews_no", totalFeedbackNo);
-		model.addAttribute("bids_no", propostaService.findByTrabalho(trabalho).size());
-		model.addAttribute("hire_rate", (int) hireRate);
-		model.addAttribute("jobs_no", (int) totalJobsNo);
-		model.addAttribute("hired_jobs_no", (int) hiredJobsNo);
+        model.addAttribute("average_client_feedback_rate", avgClienteFeedback);
+        model.addAttribute("reviews_no", totalFeedbackNo);
+        model.addAttribute("bids_no", propostaService.findByTrabalho(trabalho).size());
+        model.addAttribute("hire_rate", (int) hireRate);
+        model.addAttribute("jobs_no", (int) totalJobsNo);
+        model.addAttribute("hired_jobs_no", (int) hiredJobsNo);
 
-		return "frontend/job/view_job";
+        return "trabalho/ver_trabalho";
     }
 
     @GetMapping("/criar")
-    public String createJob(Model model){
-        model.addAttribute("categories", categoriaService.list());
+    public String createJob(Model model) {
+        model.addAttribute("categorias", categoriaService.list());
         return "trabalho/criar_trabalho";
     }
 
@@ -143,51 +143,53 @@ public class TrabalhoController extends AbstratoController{
     public String salvarTrabalho(
             @RequestParam(name = "id", required = false) Long id,
             @ModelAttribute Trabalho trabalho,
-            Model model){
+            Model model) {
 
-        if(trabalho.getTitulo().isEmpty() /*|| 1==1*/){
+        if (trabalho.getTitulo().isEmpty() /* || 1==1 */) {
             model.addAttribute("error", "É necessário preencher o campo título");
             return "trabalho/criar_trabalho";
         }
 
         // Set current loged user ID as author
         Usuario autor = super.getUsuarioAtual();
-        if(autor == null){
+        if (autor == null) {
             System.out.println("É necessário fazer login!");
             return null;
         }
         trabalho.setAutor(autor);
+        String data_criacao = FreelatechHelper.getCurrentMySQLDate();
+        trabalho.setData_criacao(data_criacao);
 
         Trabalho trabalhoSalvo = null;
-        if( id != null && id > 0){
-// TODO
+        if (id != null && id > 0) {
+            // TODO
         } else {
+
             trabalhoSalvo = trabalhoService.add(trabalho);
+
         }
         return "redirect:/trabalho/ver/" + trabalhoSalvo.getId();
     }
 
     @GetMapping("/propostas/{trabalhoId}")
     public String viewBids(Model model, @PathVariable("trabalhoId") long trabalhoId) {
-    	
-    	Trabalho trabalho = trabalhoService.get(trabalhoId);
-    	
-    	Usuario eu = getUsuarioAtual();
-    	
-    	if( trabalho == null || trabalho.getAutor().getId() != eu.getId() ) {
-    		System.out.println("Nenhum trabalho encontrado");
-    		return "redirect:/trabalho/ver/" + trabalhoId;
-    	}
-    	
-    	List<Proposta> propostas = propostaService.findByTrabalho(trabalho);
-    	
-    	model.addAttribute("trabalho", trabalho);
-    	model.addAttribute("propostas", propostas);
-    	
-    	// If me != author
-    	return "trabalho/ver_propostas";
-    }
 
-   
+        Trabalho trabalho = trabalhoService.get(trabalhoId);
+
+        Usuario eu = getUsuarioAtual();
+
+        if (trabalho == null || trabalho.getAutor().getId() != eu.getId()) {
+            System.out.println("Nenhum trabalho encontrado");
+            return "redirect:/trabalho/ver/" + trabalhoId;
+        }
+
+        List<Proposta> propostas = propostaService.findByTrabalho(trabalho);
+
+        model.addAttribute("trabalho", trabalho);
+        model.addAttribute("propostas", propostas);
+
+        // If me != author
+        return "trabalho/ver_propostas";
+    }
 
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:include="frontend/partials/head(title=${job.title})">
+<head th:include="components/head(title=${trabalho.titulo})">
 </head>
 <div th:include="components/head"></div>
 <body>
@@ -12,25 +12,25 @@
             <p><span class="badge" th:text="${trabalho.categoria.nome}"></span></p>
             <p>
                 <i class="glyphicon glyphicon-time"></i>
-                <span th:text="${trabalho.criado}"></span>
+                <span th:text="${trabalho.data_criacao}"></span>
                 /
                 <i class="glyphicon glyphicon-usd"></i>
                 <span sec:authorize="isAuthenticated()">
-                    <span th:if="${job.budget != null}" th:text="${#numbers.formatDecimal(job.budget, 0, 'POINT', 2, 'COMMA')}"></span>
-                    (<span th:text="${job.type}"></span>)
+                    <span th:if="${trabalho.orcamento != null}" th:text="${#numbers.formatDecimal(trabalho.orcamento, 0, 'POINT', 2, 'COMMA')}"></span>
+                    (<span th:text="${trabalho.tipo}"></span>)
                 </span>
                 <span sec:authorize=" !isAuthenticated()">
                     (hidden)
                 </span>
                 /
-                <span th:text="#{expertize_level}">Expertize level</span>:
-                <span th:text="${job.expertizeLevel}"></span>
+                <span th:text="#{experiencia}">Expertize level</span>:
+                <span th:text="${trabalho.experiencia}"></span>
             </p>
-            <div class="job-details-description" th:utext="${job.description}"></div>
+            <div class="job-details-description" th:utext="${trabalho.descricao}"></div>
 
             <hr />
 
-            <div sec:authorize="isAuthenticated()">
+<!--             <div sec:authorize="isAuthenticated()">
 
                 <div class="myBid" th:if="${myBid != null}">
                     <h2 th:text="#{job.view.my_bid}">My bid</h2>
@@ -89,14 +89,14 @@
                             });
                     </script>
                 </div>
-            </div>
+            </div> -->
 
         </div>
         <div class="col-md-4">
-            <h3><a th:href="@{'/profile/client/' + ${job.author.id} }" th:text="${job.author.name}"></a></h3>
+            <h3><a th:href="@{'/perfil/cliente/' + ${trabalho.autor.id} }" th:text="${trabalho.autor.nome}"></a></h3>
             <div sec:authorize="isAuthenticated()">
-                <p th:if="${job.author.profile != null}">
-                    <i class="glyphicon glyphicon-map-marker"> </i> <span th:text="${job.author.profile.location}"></span> <br />
+                <p th:if="${trabalho.autor.perfil != null}">
+                    <i class="glyphicon glyphicon-map-marker"> </i> <span th:text="${trabalho.autor.perfil.localizacao}"></span> <br />
                     <i th:if="${average_client_feedback_rate &gt; 0}" class="glyphicon glyphicon-star"></i>
                     <i th:if="${average_client_feedback_rate &gt; 1}" class="glyphicon glyphicon-star"></i>
                     <i th:if="${average_client_feedback_rate &gt; 2}" class="glyphicon glyphicon-star"></i>
@@ -114,7 +114,7 @@
                     <hr />
                 </p>
             </div>
-            <div sec:authorize=" !isAuthenticated()" th:utext="#{job.view.please_login_text}">
+            <div sec:authorize=" !isAuthenticated()" th:utext="#{trabalho.ver.efetuar_login}">
                 Login to see client details
             </div>
 

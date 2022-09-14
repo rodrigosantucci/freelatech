@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="components/head(titulo=${usuario.nome})"></head>
+<body>
+<div th:replace="components/menu"></div>
+
+
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-8">
+        	<h1 th:text="#{perfil.ver_cliente.titulo}">Client profile</h1>
+            <h3 th:text="${usuario.nome}"></h3>
+           
+			<div th:if="${perfil != null}">
+				<div th:if="${ !perfil.localizacao.isEmpty() }">
+					<p>
+						<i class="glyphicon glyphicon-map-marker"> </i>
+						<span th:text="${perfil.localizacao}"></span>
+					</p>
+				</div>
+				<div th:if="${ !perfil.social.isEmpty() }">
+					<p>Linkedin: <a th:href="${perfil.social}" th:text="${perfil.social}"></a></p>
+				</div>
+				<p class="job-details-description" th:utext="${perfil.biografia}"></p>
+			</div>
+
+            <div th:if="${perfil == null}" th:text="#{perfil.ver_cliente.sem_perfil}">
+                <p>This user hasn't created profile yet.</p>
+            </div>
+            
+            <div class="bold">
+	           	<span th:text="#{taxa_contratacao}">Hire rate</span>:
+	           	<span th:text="${trabalhosContradados}"></span> / <span th:text="${totalTrabalhos}"></span>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8">
+            
+            <h1 th:text="#{trabalhoHistorico}">Job history</h1>
+
+			<hr />
+
+            <div th:each="trHistorico : ${trabalhoHistorico}">
+                
+                <p>
+	                <a th:href="@{'/trabalho/' + ${trHistorico.trabalho.id}}" th:text="${trHistorico.trabalho.titulo}"></a>
+                </p>
+                <div th:if="${trHistorico.feedback != null}">
+	                <i class="glyphicon glyphicon-star"></i>
+	                <i th:if="${trHistorico.feedback.clienteAvaliacao &gt; 1}" class="glyphicon glyphicon-star"></i>
+	                <i th:if="${trHistorico.feedback.clienteAvaliacao &gt; 2}" class="glyphicon glyphicon-star"></i>
+	                <i th:if="${trHistorico.feedback.clienteAvaliacao &gt; 3}" class="glyphicon glyphicon-star"></i>
+	                <i th:if="${trHistorico.feedback.clienteAvaliacao &gt; 4}" class="glyphicon glyphicon-star"></i>
+	                <p>
+		                <span th:text="${trHistorico.feedback.clienteFeedback}"></span>
+	                </p>
+                </div>
+                <hr />
+
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+</body>
+</html>
