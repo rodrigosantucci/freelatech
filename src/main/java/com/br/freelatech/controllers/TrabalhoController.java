@@ -47,18 +47,18 @@ public class TrabalhoController extends AbstratoController {
 
         String paginaUrl = "/trabalho?a=a";
 
-        String filt = request.getParameter("filter");
-        String pPage = request.getParameter("page");
+        String filt = request.getParameter("filtro");
+        String pPage = request.getParameter("pagina");
 
         Usuario eu = getUsuarioAtual();
         boolean isMytrabalhosPagina = false;
 
         Map<String, Object> filter = new HashMap<>();
 
-        if (filt != null && filt.equals("myjobs") && eu != null) {
+        if (filt != null && filt.equals("meusjobs") && eu != null) {
 
             filter.put("usuario", eu);
-            paginaUrl = "/trabalho?filter=myjobs";
+            paginaUrl = "/trabalho?filtro=meusjobs";
             isMytrabalhosPagina = true;
 
         }
@@ -79,7 +79,7 @@ public class TrabalhoController extends AbstratoController {
     }
 
     @GetMapping({ "/ver/{id}", "/{id}}" })
-    public String viewJob(Model model, @PathVariable("id") long id) {
+    public String verTrabalho(Model model, @PathVariable("id") long id) {
 
         Trabalho trabalho = trabalhoService.get(id);
 
@@ -119,22 +119,22 @@ public class TrabalhoController extends AbstratoController {
         // Calcular contratante nota:
         List<Trabalho> trabalhos = trabalhoService.findByAutor(trabalho.getAutor());
         List<Trabalho> contratadosTrabalho = trabalhoService.findContratadoTrabalhosByAutor(trabalho.getAutor());
-        double totalJobsNo = trabalhos.size();
-        double hiredJobsNo = contratadosTrabalho.size();
-        double hireRate = (hiredJobsNo / totalJobsNo) * 100; // percent
+        double totalTrabalhosNo = trabalhos.size();
+        double trabalho_contratado_no = contratadosTrabalho.size();
+        double taxa_contratacao = (trabalho_contratado_no / totalTrabalhosNo) * 100; // percent
 
-        model.addAttribute("average_client_feedback_rate", avgClienteFeedback);
-        model.addAttribute("reviews_no", totalFeedbackNo);
-        model.addAttribute("bids_no", propostaService.findByTrabalho(trabalho).size());
-        model.addAttribute("hire_rate", (int) hireRate);
-        model.addAttribute("jobs_no", (int) totalJobsNo);
-        model.addAttribute("hired_jobs_no", (int) hiredJobsNo);
+        model.addAttribute("avgClienteFeedback", avgClienteFeedback);
+        model.addAttribute("feedbacks_no", totalFeedbackNo);
+        model.addAttribute("propostas_no", propostaService.findByTrabalho(trabalho).size());
+        model.addAttribute("taxa_contratacao", (int) taxa_contratacao);
+        model.addAttribute("trabalhos_no", (int) totalTrabalhosNo);
+        model.addAttribute("trabalho_contratado_no", (int) trabalho_contratado_no);
 
         return "trabalho/ver_trabalho";
     }
 
     @GetMapping("/criar")
-    public String createJob(Model model) {
+    public String criarTrabalho(Model model) {
         model.addAttribute("categorias", categoriaService.list());
         return "trabalho/criar_trabalho";
     }

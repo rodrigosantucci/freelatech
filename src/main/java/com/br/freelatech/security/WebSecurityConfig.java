@@ -9,19 +9,23 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
+	
+	
+	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 
 		httpSecurity
 				.authorizeRequests()
-				.antMatchers("/", "/css/**", "/favicon.ico").permitAll()
+				.antMatchers("/", "/css/**", "/favicon.ico", "/img/**").permitAll()
 				.antMatchers("/login", "/cadastro", "/trabalho", "/trabalho/ver/*").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.formLogin()
 					.loginPage("/login").usernameParameter("email").failureUrl("/login-error")
-					.and().logout()
+					.and().csrf().disable()
+					.logout()
 						.logoutUrl("/logout")
 						.logoutSuccessUrl("/")
 						.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));

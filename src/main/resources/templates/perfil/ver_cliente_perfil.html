@@ -30,7 +30,7 @@
             
             <div class="bold">
 	           	<span th:text="#{taxa_contratacao}">Hire rate</span>:
-	           	<span th:text="${trabalhosContradados}"></span> / <span th:text="${totalTrabalhos}"></span>
+	           	<span th:text="${trabalhosContratados}"></span> / <span th:text="${totalTrabalhos}"></span>
             </div>
             
         </div>
@@ -39,14 +39,14 @@
     <div class="row">
         <div class="col-md-8">
             
-            <h1 th:text="#{trabalhoHistorico}">Job history</h1>
+            <h1 th:text="#{trabalho_historico}">Job history</h1>
 
 			<hr />
 
             <div th:each="trHistorico : ${trabalhoHistorico}">
                 
                 <p>
-	                <a th:href="@{'/trabalho/' + ${trHistorico.trabalho.id}}" th:text="${trHistorico.trabalho.titulo}"></a>
+	                <a th:href="@{'/trabalho/ver/' + ${trHistorico.trabalho.id}}" th:text="${trHistorico.trabalho.titulo}"></a>
                 </p>
                 <div th:if="${trHistorico.feedback != null}">
 	                <i class="glyphicon glyphicon-star"></i>

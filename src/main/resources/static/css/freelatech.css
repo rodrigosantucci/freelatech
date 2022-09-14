@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
+
+
+
+
+
+
+body{
+	background-color: #E5E5E5;
+	font-family: 'Montserrat', sans-serif !important;
+}
+
+
+
+
+.bold{ font-weight: bold; }
+
+.navbar-default {
+    border-radius: 0;
+    background: #FFFFFF;
+    
+}
+
+.nav {
+  height: 7em;
+  display: flex;
+  align-items: center;
+}
+
+.nav>li>a {
+	padding:10px;
+}
+
+#navbar {
+	display:inline;
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+    color: black;
+}
+
+.main-container{ 
+	min-height: 800px; 
+}
+
+.job-details-description{
+    border-radius: 7px;
+    background-color: #eee;
+    padding: 10px;
+}
+
+
+.message-box{
+	padding: 7px;
+	background-color: #d2ebf5;
+	margin: 5px;
+	border: 1px solid #ccc;
+}
+.message-box-mine{
+	padding: 7px;
+	background-color: none;
+	margin: 5px;
+	margin-left: 15px;
+    border: 1px solid #eee;
+}

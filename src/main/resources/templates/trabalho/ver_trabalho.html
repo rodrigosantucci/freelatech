@@ -97,19 +97,19 @@
             <div sec:authorize="isAuthenticated()">
                 <p th:if="${trabalho.autor.perfil != null}">
                     <i class="glyphicon glyphicon-map-marker"> </i> <span th:text="${trabalho.autor.perfil.localizacao}"></span> <br />
-                    <i th:if="${average_client_feedback_rate &gt; 0}" class="glyphicon glyphicon-star"></i>
-                    <i th:if="${average_client_feedback_rate &gt; 1}" class="glyphicon glyphicon-star"></i>
-                    <i th:if="${average_client_feedback_rate &gt; 2}" class="glyphicon glyphicon-star"></i>
-                    <i th:if="${average_client_feedback_rate &gt; 3}" class="glyphicon glyphicon-star"></i>
-                    <i th:if="${average_client_feedback_rate &gt; 4}" class="glyphicon glyphicon-star"></i>
-                    <span th:text="${average_client_feedback_rate}"></span> / 5 
-                    (<span th:text="#{reviews_no}">reviews</span>: <span th:text="${reviews_no}"></span> )
+                    <i th:if="${avgClienteFeedback &gt; 0}" class="glyphicon glyphicon-star"></i>
+                    <i th:if="${avgClienteFeedback &gt; 1}" class="glyphicon glyphicon-star"></i>
+                    <i th:if="${avgClienteFeedback &gt; 2}" class="glyphicon glyphicon-star"></i>
+                    <i th:if="${avgClienteFeedback &gt; 3}" class="glyphicon glyphicon-star"></i>
+                    <i th:if="${avgClienteFeedback &gt; 4}" class="glyphicon glyphicon-star"></i>
+                    <span th:text="${avgClienteFeedback}"></span> / 5 
+                    (<span th:text="#{revisoes_no}">reviews</span>: <span th:text="${feedbacks_no}"></span> )
                     <br />
-                    <span th:text="#{hire_rate}">Hire rate</span>: <span th:text="${hire_rate}"></span>% 
-                    ( <span th:text="${hired_jobs_no}"></span> / <span th:text="${jobs_no}"></span> )
+                    <span th:text="#{taxa_contratacao}">Hire rate</span>: <span th:text="${taxa_contratacao}"></span>% 
+                    ( <span th:text="${trabalho_contratado_no}"></span> / <span th:text="${trabalhos_no}"></span> )
                     <hr />
-                    <h3 th:text="#{job_stats}">Job stats</h3>
-                    <span th:text="#{bids}">Bids</span>: <span th:text="${bids_no}"></span><br />
+                    <h3 th:text="#{trabalho_estatistica}">Job stats</h3>
+                    <span th:text="#{propostas}">Bids</span>: <span th:text="${propostas_no}"></span><br />
                     <!-- Inverviewing: 4 (?) -->
                     <hr />
                 </p>

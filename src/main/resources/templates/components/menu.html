@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <!-- <a class="navbar-brand" href="/" ><img height="70px" width="140px" th:src="@{/css/logo.png}" /></a> -->
+                <a class="navbar-brand" href="/" ><img height="60px" width="180px" th:src="@{/img/logo.jpg}" /></a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -29,22 +29,22 @@
                         <!-- <a th:href="@{/perfil} + '#bids'" th:text="#{menu.minhas_propostas}"></a> -->
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <!-- <a th:href="@{/bid/my-contracts}" th:text="#{menu.meus_contratos}"></a> -->
+                        <!-- <a th:href="@{/propostas/meus_contratos}" th:text="#{menu.meus_contratos}"></a> -->
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <!-- <a th:href="@{/job?filter=myjobs}" th:text="#{menu.meus_trabalhos}">Meus trabalhos</a> -->
+                        <!-- <a th:href="@{/trabalho?filtro=meusTrabalhos}" th:text="#{menu.meus_trabalhos}">Meus trabalhos</a> -->
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <!-- <a th:href="@{/message}" th:text="#{menu.mensagens}">Mensagens</a> -->
+                        <!-- <a th:href="@{/mensagem}" th:text="#{menu.mensagens}">Mensagens</a> -->
                     </li>
                     
                     <li sec:authorize="isAuthenticated()">
                         <a th:href="@{/logout}
                         " th:text="#{menu.logout}">Log out</a>
                     </li>
-                    
-                    <li><a href="?locale=eng_US">En</a></li>
-                    <li><a href="?locale=pt_BR">Pt</a></li>
+
+                    <li><a href="?locale=eng_US"><img height="30px" width="40px" th:src="@{/img/eng.jpg}" /></a></li>
+                    <li><a href="?locale=pt_BR"><img height="30px" width="40px" th:src="@{/img/pt-br.jpg}" /></a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:include="components/head(title=#{inicio.pagina_titulo})">
+<head th:include="components/head(titulo=#{inicio.titulo_pagina})">
 </head>
 <div th:include="components/head"></div>
 <body>
@@ -13,7 +13,7 @@
                 <h1 th:text="#{inicio.header}"></h1>
                 <p th:utext="#{inicio.intro_1('/trabalho')}"></p>
 
-                <p th:utext="#{inicio.intro_2('/trabalho/criar_trabalho')}"></p>
+                <p th:utext="#{inicio.intro_2('/trabalho/criar')}"></p>
             </div>
         </div>
     </div>

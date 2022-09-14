@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:include="components/head(title=#{trabalho.criar.titulo})">
+<head th:include="components/head(titulo=#{trabalho.criar.titulo})">
 </head>
 <div th:include="components/head"></div>
 <body>
@@ -35,7 +35,7 @@
 
                 <div class="form-group">
                      <label th:text="#{orcamento}"></label>
-                    <input type="number" name="orcamento" class="form-control" />
+                    <input  type="number" placeholder="0,00 R$"  name="orcamento" class="form-control" />
                 </div>
 
                 <div class="form-group">
@@ -57,7 +57,7 @@
                 </div>
 
                 <p>
-                    <input  type="submit" class="btn btn-primary" />
+                    <button  type="submit" th:text="#{enviar}" class="btn btn-primary" />
                 </p>
             </form>
         </div>

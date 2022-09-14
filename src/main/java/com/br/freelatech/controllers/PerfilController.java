@@ -101,7 +101,6 @@ public class PerfilController extends AbstratoController {
         // Get and update current logged user. Don't use params from input to prevent
         // unauthorized editing.
         Usuario eu = getUsuarioAtual();
-
         eu.setNome(usuario.getNome());
         eu.setEmail(usuario.getEmail());
 
@@ -111,7 +110,7 @@ public class PerfilController extends AbstratoController {
             eu.getPerfil().setBiografia(perfil.getBiografia());
         } else {
             eu.setPerfil(perfil);
-            eu.getPerfil().setUsuario(usuario);
+            eu.getPerfil().setUsuario(eu);
         }
 
         usuarioService.save(eu);
