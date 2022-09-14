@@ -90,8 +90,8 @@ CREATE TABLE IF NOT EXISTS `tb_mensagem` (
 -- INSERE DADOS INICIAIS
 
 -- DADOS DE USUARIO
-INSERT INTO `freelatech`.`tb_usuarios` (`ID`, `EMAIL`, `NOME`, `SENHA`) VALUES ('1', 'u1@u1.com', 'Usuario Contratante', '$2a$10$uWt2HuBlA8/6z8M3dMcxTOoF5hjHEnV3OuWjtuE4UgSvZPMlnaEHG');
-INSERT INTO `freelatech`.`tb_usuarios` (`ID`, `EMAIL`, `NOME`, `SENHA`) VALUES ('2', 'u2@u2.com', 'Usuario Profissional', '$2a$10$uWt2HuBlA8/6z8M3dMcxTOoF5hjHEnV3OuWjtuE4UgSvZPMlnaEHG');
+INSERT INTO `freelatech`.`tb_usuarios` (`ID`, `EMAIL`, `NOME`, `SENHA`) VALUES ('1', 'u1@u1.com', 'Usuario Contratante', '$2a$10$YUPt.P3lXbsN0vrE0Eb0Z.IeCllHjmo4Aaikd/klmO4hwGULdcb7i');
+INSERT INTO `freelatech`.`tb_usuarios` (`ID`, `EMAIL`, `NOME`, `SENHA`) VALUES ('2', 'u2@u2.com', 'Usuario Profissional', '$2a$10$YUPt.P3lXbsN0vrE0Eb0Z.IeCllHjmo4Aaikd/klmO4hwGULdcb7i');
 
 -- DADOS DE CATEGORIA
 
