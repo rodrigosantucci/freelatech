@@ -11,7 +11,7 @@
 	<groupId>com.br</groupId>
 	<artifactId>freelatech</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>freelatech</name>
 	<description>Aplicação web com spring mvc</description>
 	<properties>
