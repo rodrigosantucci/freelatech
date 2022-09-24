@@ -10,13 +10,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 public class PropostaService {
-    
+
     @Autowired
     PropostaRepository propostaRepository;
-
 
     public Proposta salvar(Proposta proposta) {
         return propostaRepository.save(proposta);
@@ -30,19 +28,18 @@ public class PropostaService {
 
         List<Proposta> propostas = propostaRepository.findByUsuarioIdAndTrabalhoId(usuario.getId(), trabalho.getId());
 
-        if(propostas.isEmpty()){
+        if (propostas.isEmpty()) {
 
             return null;
         }
 
-
-        if(propostas.size() > 1) {
+        if (propostas.size() > 1) {
             System.out.println("ERRO: encontrados mais de uma proposta do usuario para o trabalho.");
         }
 
         try {
             return propostas.get(0);
-        } catch (IndexOutOfBoundsException e ) {
+        } catch (IndexOutOfBoundsException e) {
             System.out.println("ERRO: Não foram encontrados propostas para o usuario");
         }
 
