@@ -29,7 +29,6 @@ public class PropostaService {
         List<Proposta> propostas = propostaRepository.findByUsuarioIdAndTrabalhoId(usuario.getId(), trabalho.getId());
 
         if (propostas.isEmpty()) {
-
             return null;
         }
 

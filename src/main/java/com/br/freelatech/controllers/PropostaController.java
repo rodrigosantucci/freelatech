@@ -29,15 +29,15 @@ public class PropostaController extends AbstratoController {
     TrabalhoService trabalhoService;
 
     @PostMapping("/salvar")
-    public String salvarProposta(@Valid Proposta proposta, @RequestParam("trabalho_id") Long trabalhoId){
+    public String salvarProposta(@Valid Proposta proposta, @RequestParam("trabalho_id") Long trabalhoId) {
 
         Usuario usuario = super.getUsuarioAtual();
 
-        if( usuario == null) {
+        if (usuario == null) {
             return "redirect:/";
         }
 
-        Trabalho trabalho = trabalhoService.get(trabalhoId)
+        Trabalho trabalho = trabalhoService.get(trabalhoId);
         String dataCriacao = FreelatechHelper.getCurrentMySQLDate();
 
         proposta.setTrabalho(trabalho);
