@@ -50,7 +50,7 @@ public class FeedbackController extends AbstratoController {
         model.addAttribute("proposta", proposta);
         model.addAttribute("profissional_nome", profissional_nome);
 
-        return "/feedback/enviar";
+        return "feedback/enviar";
     }
 
     @PostMapping("/salvar")
@@ -119,7 +119,7 @@ public class FeedbackController extends AbstratoController {
         model.addAttribute("feedback", feedback);
         model.addAttribute("pode_postar_feedback", !feedbackJaEnviado(feedback) && possoPostar(proposta));
 
-        return "/feedback/ver";
+        return "feedback/ver";
 
     }
 

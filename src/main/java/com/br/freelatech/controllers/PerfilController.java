@@ -91,7 +91,7 @@ public class PerfilController extends AbstratoController {
         model.addAttribute("minhasPropostas", minhasPropostas);
         model.addAttribute("meus_feedbacks", meusFeedbacks);
 
-        return "/perfil/ver_perfil";
+        return "perfil/ver_perfil";
     }
 
     @GetMapping("/editar")
@@ -100,7 +100,7 @@ public class PerfilController extends AbstratoController {
         Usuario usuario = getUsuarioAtual();
         model.addAttribute("usuario", usuario);
 
-        return "/perfil/editar_perfil";
+        return "perfil/editar_perfil";
     }
 
     @PostMapping("/salvar")
@@ -161,7 +161,7 @@ public class PerfilController extends AbstratoController {
         model.addAttribute("trabalhosContratados", trabalhosContradados);
         model.addAttribute("trabalhoHistorico", trabalhoHistorico);
 
-        return "/perfil/ver_cliente_perfil";
+        return "perfil/ver_cliente_perfil";
 
     }
 

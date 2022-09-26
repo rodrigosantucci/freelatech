@@ -52,7 +52,7 @@ public class MensagemController extends AbstratoController {
 
         model.addAttribute("meu_id", eu.getId());
 
-        return "/mensagem/minha_sala_mensagem";
+        return "mensagem/minha_sala_mensagem";
     }
 
     @GetMapping("/trabalho_sala/{trabalhoId}/{contratante}")
@@ -95,7 +95,7 @@ public class MensagemController extends AbstratoController {
         model.addAttribute("sala_mensagem.pagina_tamanho", salaMensagemPaginaTamanho);
         model.addAttribute("eu", eu);
 
-        return "/mensagem/trabalho_sala";
+        return "mensagem/trabalho_sala";
     }
 
     @PostMapping("/trabalho_sala/{trabalhoId}/{contratante}")
