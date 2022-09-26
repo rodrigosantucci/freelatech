@@ -39,13 +39,12 @@ public class PropostaController extends AbstratoController {
 
         Trabalho trabalho = trabalhoService.get(trabalhoId);
         String dataCriacao = FreelatechHelper.getCurrentMySQLDate();
-
         proposta.setTrabalho(trabalho);
         proposta.setUsuario(usuario);
         proposta.setDataCriacao(dataCriacao);
 
         propostaService.salvar(proposta);
-        return "redirect:/trabalho/ver" + trabalho.getId();
+        return "redirect:/trabalho/ver/" + trabalho.getId();
     }
 
     @GetMapping("/aceito/{propostaId}")
@@ -69,7 +68,7 @@ public class PropostaController extends AbstratoController {
                 + proposta.getUsuario().getId();
     }
 
-    @GetMapping("/meus_contratos")
+    @GetMapping("/meus-contratos")
     public String meusContratos(Model model) throws Exception {
 
         Usuario eu = getUsuarioAtual();
@@ -86,7 +85,7 @@ public class PropostaController extends AbstratoController {
         model.addAttribute("contratos", contratos);
         model.addAttribute("eu", eu);
 
-        return "/proposta/meus_contratos";
+        return "proposta/meus_contratos";
 
     }
 

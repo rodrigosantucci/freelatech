@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="components/head(titulo=#{mensagem.sala_trabalho.pagina_titulo})">
+</head>
+<body>
+	<div th:replace="components/menu"></div>
+	<div class="container main-container">
+		<div class="row">
+			<div class="col-md-8">
+
+				<h1 th:text="#{mensagem.sala_mensagem.pagina_titulo}">My message rooms</h1>
+
+				<table class="table table-stripped">
+                    <tr>
+                        <th th:text="#{usuario}">User</th>
+                        <th th:text="#{mensagem.sala_mensagem.ultima_mensagem}">Last message</th>
+                        <th th:text="#{trabalho}">Job</th>
+                        <th> </th>
+                    </tr>
+
+                    <tr th:each="mensagem : ${mensagens}">
+                        <td th:if="${mensagem.remetente.id == my_id}" th:text="${mensagem.destinatario.nome}"></td>
+                        <td th:if="${mensagem.remetente.id != my_id}" th:text="${mensagem.remetente.nome}"></td>
+                        
+                        <td>
+                        	<span th:text="${mensagem.dataEnvio}"></span><br />
+                        	<i>
+	                        	<span th:if="${#strings.length(mensagem.texto) &lt;= 20}" th:text="${mensagem.texto}"></span>
+	                        	<span th:if="${#strings.length(mensagem.texto) &gt; 20}" th:text="${#strings.substring(mensagem.texto,0,20)}"></span>
+	                        	...
+                        	</i>
+                        </td>
+                        <td>
+                        	<div th:if="${mensagem.trabalho != null}" th:text="${mensagem.trabalho.titulo}">-</div>
+                       	</td>
+                        <td>
+ 	                        	<a th:href="@{'/mensagem/trabalho_sala/' + ${mensagem.trabalho != null ? mensagem.trabalho.id : 0} + '/' + ${mensagem.remetente.id == meu_id ? mensagem.destinatario.id : mensagem.remetente.id}}"
+	                        	   class="btn btn-primary">
+	                        	   		<i class="glyphicon glyphicon-envelope"> </i>
+	                       				<span th:text="#{abrir}">Open</span>
+	                        	</a>
+                        </td>
+                    </tr>
+
+                </table>
+
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html>
+

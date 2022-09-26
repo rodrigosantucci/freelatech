@@ -43,7 +43,7 @@ public class MensagemController extends AbstratoController {
     private int salaMensagemPaginaTamanho;
 
     @GetMapping
-    public String myMessageRooms(Model model) {
+    public String minhaSalaMensagem(Model model) {
 
         Usuario eu = getUsuarioAtual();
         List<Mensagem> mensagens = mensagemService.getSalasPorUsuario(eu);
@@ -52,7 +52,7 @@ public class MensagemController extends AbstratoController {
 
         model.addAttribute("meu_id", eu.getId());
 
-        return "/mensagem/minhas_salas_mensagem";
+        return "/mensagem/minha_sala_mensagem";
     }
 
     @GetMapping("/trabalho_sala/{trabalhoId}/{contratante}")
@@ -99,7 +99,7 @@ public class MensagemController extends AbstratoController {
     }
 
     @PostMapping("/trabalho_sala/{trabalhoId}/{contratante}")
-    public String sendMessageToJobRoom(
+    public String enviarMensagemParaSalaTrabalho(
             HttpServletRequest request,
             @PathVariable("trabalhoId") long trabalhoId,
             @PathVariable("contratante") long contratanteId) throws Exception {
@@ -124,7 +124,7 @@ public class MensagemController extends AbstratoController {
         mensagem.setDestinatario(contratante);
         mensagem.setRemetente(getUsuarioAtual());
         mensagem.setTexto(mensagemTexto);
-        mensagem.setDataCriacao(new Date());
+        mensagem.setDataEnvio(new Date());
 
         Mensagem resultado = mensagemService.salvar(mensagem);
         if (resultado == null) {

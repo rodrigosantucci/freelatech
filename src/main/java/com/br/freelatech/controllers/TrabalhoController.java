@@ -55,10 +55,10 @@ public class TrabalhoController extends AbstratoController {
 
         Map<String, Object> filter = new HashMap<>();
 
-        if (filt != null && filt.equals("meusjobs") && eu != null) {
+        if (filt != null && filt.equals("meusTrabalhos") && eu != null) {
 
             filter.put("usuario", eu);
-            paginaUrl = "/trabalho?filtro=meusjobs";
+            paginaUrl = "/trabalho?filtro=meusTrabalhos";
             isMytrabalhosPagina = true;
 
         }
@@ -89,12 +89,12 @@ public class TrabalhoController extends AbstratoController {
         Proposta minhaProposta = null;
 
         // Check if logged in:
-        Usuario currentUser = super.getUsuarioAtual();
-        if (currentUser != null) {
-            minhaProposta = propostaService.getUsuarioPropostaByTrabalho(currentUser, trabalho);
+        Usuario usuarioAtual = super.getUsuarioAtual();
+        if (usuarioAtual != null) {
+            minhaProposta = propostaService.getUsuarioPropostaByTrabalho(usuarioAtual, trabalho);
             if (minhaProposta != null) {
                 // New line to <br>
-                minhaProposta.setProposta(FreelatechHelper.nl2br(minhaProposta.getProposta()));
+                minhaProposta.setProposta_texto(FreelatechHelper.nl2br(minhaProposta.getProposta_texto()));
             }
         }
 
@@ -110,7 +110,12 @@ public class TrabalhoController extends AbstratoController {
             int sum = 0;
             int no = 0;
             for (Feedback f : feedbacks) {
-                sum += f.getClienteAvaliacao();
+                if (f.getClienteAvaliacao() != null) {
+                    sum += f.getClienteAvaliacao();
+                } else {
+                    sum += 0;
+                }
+
                 no++;
             }
             avgClienteFeedback = sum / no;
@@ -172,7 +177,7 @@ public class TrabalhoController extends AbstratoController {
     }
 
     @GetMapping("/propostas/{trabalhoId}")
-    public String viewBids(Model model, @PathVariable("trabalhoId") long trabalhoId) {
+    public String verPropostas(Model model, @PathVariable("trabalhoId") long trabalhoId) {
 
         Trabalho trabalho = trabalhoService.get(trabalhoId);
 
@@ -188,7 +193,7 @@ public class TrabalhoController extends AbstratoController {
         model.addAttribute("trabalho", trabalho);
         model.addAttribute("propostas", propostas);
 
-        // If me != author
+        // If eu != author
         return "trabalho/ver_propostas";
     }
 

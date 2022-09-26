@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="components/head(titulo=#{mensagem.sala_trabalho.pagina_titulo})">
+</head>
+
+<body>
+	<div th:replace="components/menu"></div>
+	<div class="container main-container">
+		<div class="row">
+			<div class="col-md-8">
+
+				<h1 th:text="#{mensagem.sala_trabalho.pagina_titulo}">Messages</h1>
+
+				<h3><a th:text="${contato.nome}" th:href="${contato_url}"></a></h3>
+
+				<p th:if="${trabalho != null}">
+					<span th:text="#{trabalho}">Job</span>:
+					<a th:text="${trabalho.titulo}" th:href="@{'/trabalho/ver/' + ${trabalho.id} }"></a>
+				</p>
+				
+				<p class="text-center">
+					<a class="btn btn-success" th:href="@{''}" th:text="#{mensagem.sala_trabalho.atualizar}">Refresh</a>
+				</p>
+				
+				<p class="text-center" th:text="#{mensagem.sala_trabalho.ultimas_mensagens( ${500} )}">
+					(Displays last
+					<span th:text="${500}"></span>
+					messages.)
+				</p>
+
+				<div th:each="mensagem : ${mensagens}" th:class="${mensagem.remetente.id == eu.id ? 'message-box-mine' : 'message-box'}">
+					(<span th:text="${#dates.format(mensagem.dataEnvio, 'dd/mm/yyyy HH:mm:ss')}"></span>)
+					<strong th:text="${mensagem.remetente.nome}"></strong> 
+					:
+					<span th:text="${mensagem.texto}" class="message-message-text"></span>
+				</div>
+
+				<div class="message-new-message-container">
+					<form th:action="@{''}" method="post">
+						<p>
+							<textarea class="form-control" name="mensagem" th:placeholder="#{mensagem.sala_trabalho.placeholder}" __placeholder="Insira sua mensagem..."></textarea>
+						</p>
+						<p>
+							<button class="btn btn-primary btn-lg" th:text="#{enviar}">Send</button>
+						</p>
+					</form>
+
+				</div>
+
+			</div>
+			<div class="col-md-4">
+				<div th:if="${trabalho != null}">
+					<h3 th:if="${proposta.propostaAceita != 0}" th:text="#{mensagem.sala_trabalho.contrato_detalhe_titulo}">Contract details</h3>
+					<h3 th:if="${proposta.propostaAceita == 0}" th:text="#{proposta_texto}">Proposal</h3>
+					<p th:if="${proposta.propostaAceita != 0 and proposta.fechado == 0}">
+						<span class="label label-primary" th:text="#{proposta.status.aceito}">Accepted</span>
+					</p>
+					<p th:if="${proposta.fechado == 1}">
+						<span class="label label-success" th:text="#{proposta.status.fechado}">Closed</span>
+					</p>
+					<p>
+						<b th:text="#{preco}">Price</b>: <span th:text="${#numbers.formatDecimal(proposta.preco, 0, 'POINT', 2, 'COMMA')}"></span>
+						(
+						<span th:if="${trabalho.tipo == 'FIXO'}" th:text="#{opcao.fixo}"></span>
+						<span th:if="${trabalho.tipo == 'HORA'}" th:text="#{opcao.hora}"></span>
+						)
+						<br />
+						<b th:text="#{prazo}">Deadline</b>: <span th:text="${proposta.prazo ?: 'x'}"></span>
+					</p>
+					<p th:if="${proposta.fechado == 0}">
+						<a th:href="@{'/proposta/fechar/' + ${proposta.id} }" class="btn btn-success">Fechar contrato</a>
+					</p>
+					<p th:if="${proposta.fechado == 1}">
+							<a th:href="@{'/feedback/ver/' + ${proposta.id} }" class="btn btn-primary" th:text="#{ver_feedback}">View feedback</a>
+					
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

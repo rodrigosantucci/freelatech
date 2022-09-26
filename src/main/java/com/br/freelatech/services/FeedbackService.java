@@ -1,6 +1,5 @@
 package com.br.freelatech.services;
 
-
 import com.br.freelatech.models.Proposta;
 import com.br.freelatech.models.Feedback;
 import com.br.freelatech.models.Trabalho;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FeedbackService {
-    
 
     @Autowired
     FeedbackRepository feedbackRepository;
@@ -20,7 +18,6 @@ public class FeedbackService {
     public Feedback salvar(Feedback feedback) {
         return feedbackRepository.save(feedback);
     }
-
 
     public Feedback get(Long id) {
         return feedbackRepository.findOne(id);
@@ -30,7 +27,6 @@ public class FeedbackService {
         return feedbackRepository.findByProposta(proposta);
     }
 
-
     public List<Feedback> findByCliente(Usuario usuario) {
         return feedbackRepository.findByCliente(usuario);
     }
@@ -39,7 +35,7 @@ public class FeedbackService {
         return feedbackRepository.findByTrabalho(trabalho);
     }
 
-    public List<Feedback> findByPropostas (List<Proposta> propostas) {
+    public List<Feedback> findByProposta(List<Proposta> propostas) {
         return feedbackRepository.findByProposta(propostas);
     }
 }

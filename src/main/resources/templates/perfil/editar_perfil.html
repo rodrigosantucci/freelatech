@@ -12,7 +12,7 @@
 
             <form th:action="@{/perfil/salvar}" method="post">
                 <div class="form-group">
-                    <label for="name" th:text="#{registrar.nome}">Name</label> *
+                    <label for="name" th:text="#{registro.nome}">Name</label> *
                     <input type="text" id="name" name="nome" autofocus="autofocus" required="required" class="form-control" th:value="${usuario?.nome}" />
                 </div>
 
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="biography" th:text="#{profile.edit.form.bio}">Biography</label> *
+                    <label for="biography" th:text="#{perfil.editar.form.bio}">Biography</label> *
                     <textarea id="biography" name="biografia" required="required" class="form-control" th:utext="${usuario?.perfil?.biografia}"></textarea>
                 </div>
 
@@ -32,13 +32,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="linkedin">Linkedin</label>
+                    <label for="Social">Social</label>
                     <input type="text" id="linkedin" name="social" class="form-control" th:value="${usuario?.perfil?.social}" /> <br />
                 </div>
 
 
                 <div class="form-group">
-                    <button class="btn btn-success" th:text="#{save}">Save</button>
+                    <button class="btn btn-success" th:text="#{salvar}">Save</button>
                 </div>
             </form>
 

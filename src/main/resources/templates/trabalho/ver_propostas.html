@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="components/head(titulo=${trabalho.titulo})">
+</head>
+<body>
+<div th:replace="components/menu"></div>
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-12">
+            
+            <h1 th:text="#{trabalho.ver.ver_propostas}">View bids</h1>
+            
+            <h2 th:text="${trabalho.titulo}"></h2>
+            
+            <p>
+            	<a th:href="@{'/trabalho/ver/' + ${trabalho.id}}" class="btn btn-sm btn-primary" th:text="#{trabalho.ver.propostas.ver_trabalho}">View trabalho</a>
+            </p>
+            
+            <table class="table table-striped">
+                    <tr>
+                        <th th:text="#{trabalho.ver.propostas.tabela.usuario}">User</th>
+                        <th th:text="#{preco}">Price</th>
+                        <th  th:text="#{prazo}">Deadline</th>
+                        <th  th:text="#{trabalho.ver.propostas.tabela.proposta_texto}">Proposal</th>
+                        <th> </th>
+                    </tr>
+
+                    <tr th:each="proposta : ${propostas}">
+                        <td><a th:href="@{'/perfil/' + ${proposta.usuario.id}}" th:text="${proposta.usuario.nome}"></a></td>
+                        <td th:text="${#numbers.formatDecimal(proposta.preco, 0, 'POINT', 2, 'COMMA')}"></td>
+                        <td th:text="${proposta.prazo}"></td>
+                        <td th:text="${proposta.proposta_texto}"></td>
+                        <td>
+                        	<a class="btn btn-success" th:href="@{'/mensagem/trabalho_sala/' + ${proposta.trabalho.id} + '/' + ${proposta.usuario.id} }">
+                        		<i class="glyphicon glyphicon-envelope"> </i>
+                        		<span th:text="#{trabalho.ver.propostas.tabela.mensagem}">Message</span>
+                        	</a>
+                        	<a onclick="if( ! confirm('Deseja confirmar?')){ return false; }" th:if="${proposta.propostaAceita} == 0" class="btn btn-primary" th:href="@{ '/proposta/aceito/' + ${proposta.id} }">
+                        		<i class="glyphicon glyphicon-ok"> </i>
+                        		<span th:text="#{trabalho.ver.propostas.tabela.contratar}" >Hire</span>
+                        	</a>
+                        	<span th:if="${proposta.propostaAceita} == 1" class="green text-success">
+                        		<i class="glyphicon glyphicon-ok"> </i>
+                        		<span th:text="#{trabalho.ver.propostas.tabela.aceita}" >Accepted</span>
+                        	</span>
+                       	</td>
+                    </tr>
+
+                </table>
+
+        </div>
+        
+    </div>
+</div>
+</body>
+</html>
+

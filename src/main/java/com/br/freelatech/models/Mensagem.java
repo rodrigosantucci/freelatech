@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "tb_mensagem")
 public class Mensagem {
 
     @Id
@@ -34,7 +36,7 @@ public class Mensagem {
     @Size(min = 2)
     private String texto;
 
-    private Date dataCriacao;
+    private Date dataEnvio;
 
     public Long getId() {
         return id;
@@ -76,12 +78,12 @@ public class Mensagem {
         this.texto = texto;
     }
 
-    public Date getDataCriacao() {
-        return dataCriacao;
+    public Date getDataEnvio() {
+        return dataEnvio;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setDataEnvio(Date dataEnvio) {
+        this.dataEnvio = dataEnvio;
     }
 
 }

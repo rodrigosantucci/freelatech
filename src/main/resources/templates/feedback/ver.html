@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="components/head(titulo=#{feedback.ver.titulo})">
+</head>
+<body>
+<div th:replace="components/menu"></div>
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-8">
+        	<h1 th:text="#{ver_feedback}"></h1>
+        	
+        	<h3 th:text="${proposta.trabalho.titulo}"></h3>
+        	<p><span th:text="#{contratante}" class="bold"></span>: <span th:text="${proposta.usuario.nome}"></span></p>
+				
+			<p th:if="${feedback} != null">
+    	    	<p><span th:text="#{avaliacao}" class="bold"></span>: <span th:text="${feedback.contratanteAvaliacao}"></span> / 5</p>
+			</p>
+    	    <p>
+	    	    <span th:text="#{feedback_texto}" class="bold"></span>:<br />
+				<p th:if="${feedback} != null">
+					<span th:text="${feedback.contratanteFeedback}"></span>
+				</p>
+	    	    
+    	    </p>
+
+        	<p><span th:text="#{cliente}" class="bold"></span>: <span th:text="${proposta.trabalho.autor.nome}"></span></p>
+    	    <p th:if="${feedback} != null"><span th:text="#{taxa_classificacao}" class="bold"></span>: <span th:text="${feedback.clienteAvaliacao}"></span> / 5 </p>
+    	    <p>
+	    	    <span th:text="#{feedback_texto}" class="bold"></span>:<br />
+				<p th:if="${feedback} != null">
+					<span th:text="${feedback.clienteFeedback}"></span>
+				</p>
+	    	    
+    	    </p>
+    	    
+    	    <p th:if="${pode_postar_feedback}">
+    	    	<a th:href="@{'/feedback/' + ${proposta.id}}" class="btn btn-primary" th:text="#{enviar_feedback}"></a>
+    	    </p>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

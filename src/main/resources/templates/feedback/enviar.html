@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="components/head(titulo=#{feedback.enviar.titulo})">
+</head>
+<body>
+<div th:replace="components/menu"></div>
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-8">
+        	<h1 th:text="#{feedback.enviar.titulo}"></h1>
+        	
+        	<p><span th:text="#{trabalho}" class="bold"></span>: <span th:text="${proposta.trabalho.titulo}"></span></p>
+        	<p><span th:text="#{contratante}" class="bold"></span>: <span th:text="${proposta.usuario.nome}"></span></p>
+    	    
+    	    <form method="POST" th:action="@{/feedback/salvar}">
+
+				<input name="proposta_id" type="hidden" th:value="${proposta.id}" />
+
+	        	<p><label th:text="#{avaliacao}"></label> 
+	        		<select name="avaliacao" style="width: 50px" required="required">
+		        		<option>5</option>
+		        		<option>4</option>
+		        		<option>3</option>
+		        		<option>2</option>
+		        		<option>1</option>
+	        		</select>
+	       		</p>
+	       		<p><label th:text="#{feedback}"></label></p>
+	       		<p><textarea name="feedback" rows="10" cols="100" required="required"></textarea></p>
+	       		<p><button class="btn btn-primary" th:text="#{enviar}"></button></p>
+
+       		</form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

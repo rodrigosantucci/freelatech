@@ -11,11 +11,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-
-
-
 @Repository("feedbackRepository")
-public interface FeedbackRepository extends JpaRepository<Feedback, Long>{
+public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
 
     Feedback findByProposta(Proposta proposta);
 
@@ -26,15 +23,18 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Long>{
             + " JOIN j.autor u"
             + " WHERE u = :usuario ")
     List<Feedback> findByCliente(@Param("usuario") Usuario usuario);
-    
-
 
     @Query("SELECT f"
-        + " FROM Feedback f "
-        + " JOIN f.proposta b "
-        + " JOIN b.trabalho j "
-        + " WHERE j = :trabalho ")
+            + " FROM Feedback f "
+            + " JOIN f.proposta b "
+            + " JOIN b.trabalho j "
+            + " WHERE j = :trabalho ")
     Feedback findByTrabalho(@Param("trabalho") Trabalho trabalho);
 
-    List<Feedback> findByProposta(List<Proposta> propostas);
+    @Query("SELECT f "
+            + "FROM Feedback f "
+            + "JOIN f.proposta b "
+            + "JOIN b.trabalho j "
+            + "WHERE j in (:propostas) ")
+    List<Feedback> findByProposta(@Param("propostas") List<Proposta> propostas);
 }

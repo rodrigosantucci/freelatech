@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="components/head(titulo=#{proposta.meus_contratos.titulo})">
+</head>
+<body>
+    
+    <div th:replace="components/menu"></div>
+    <div class="container main-container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <h1 th:text="#{proposta.meus_contratos.titulo}"></h1>
+
+                <table class="table table-stripped">
+
+                    <tr>
+                        <th th:text="#{trabalho}"></th>
+                        <th th:text="#{preco}">Price</th>
+                        <th> </th>
+                    </tr>
+
+                    <tr th:each="proposta : ${contratos}">
+                    <td th:utext="${proposta.trabalho.titulo}"></td>
+                        <td th:utext="${#numbers.formatDecimal(proposta.preco, 0, 'POINT', 2, 'COMMA')}"></td>
+                         <td>
+                         	<a th:href="@{'/mensagem/trabalho_sala/' + ${proposta.trabalho.id} + '/' + ${eu.id == proposta.usuario.id ? proposta.trabalho.autor.id : proposta.usuario.id} }" 
+                         		class="btn btn-primary"
+                         		th:text="#{trabalho_sala}"></a>
+
+                                
+                     	</td>
+                    </tr>
+                </table>
+                <p th:if="${contratos == null}" th:text="#{proposta.sem_contratos}"/>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

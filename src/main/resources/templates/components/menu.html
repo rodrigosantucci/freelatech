@@ -20,22 +20,22 @@
                     <li sec:authorize="! isAuthenticated()" role="presentation"><a th:href="@{/login}" th:text="#{menu.login}"></a></li>
                     <li sec:authorize="! isAuthenticated()" role="presentation"><a th:href="@{/cadastro}" th:text="#{menu.cadastrar}"></a></li>
                     <li sec:authorize="isAuthenticated()">
-                        <a th:href="@{/perfil}" sec:authentication="principal.nomeCompleto"></a>
+                        <a th:href="@{/perfil/editar}" sec:authentication="principal.nomeCompleto"></a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
                         <a th:href="@{/trabalho/criar}" th:text="#{menu.publicar_trabalho}"></a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <!-- <a th:href="@{/perfil} + '#bids'" th:text="#{menu.minhas_propostas}"></a> -->
+                    <a th:href="@{/perfil} + '#propostas'" th:text="#{menu.minhas_propostas}"></a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <!-- <a th:href="@{/propostas/meus_contratos}" th:text="#{menu.meus_contratos}"></a> -->
+                    <a th:href="@{/proposta/meus-contratos}" th:text="#{menu.meus_contratos}"></a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <!-- <a th:href="@{/trabalho?filtro=meusTrabalhos}" th:text="#{menu.meus_trabalhos}">Meus trabalhos</a> -->
+                    <a th:href="@{/trabalho?filtro=meusTrabalhos}" th:text="#{menu.meus_trabalhos}">Meus trabalhos</a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <!-- <a th:href="@{/mensagem}" th:text="#{menu.mensagens}">Mensagens</a> -->
+                    <a th:href="@{/mensagem}" th:text="#{menu.mensagens}">Mensagens</a>
                     </li>
                     
                     <li sec:authorize="isAuthenticated()">

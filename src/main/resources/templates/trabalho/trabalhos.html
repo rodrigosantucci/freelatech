@@ -30,14 +30,17 @@
                                 /
                                 <span th:text="${trabalho.experiencia}"></span>
                             </p>
+
+                            
+
                         </td>
                         <td><a th:href="@{'/trabalho/ver/' + ${trabalho.id}}" class="btn btn-primary" th:text="#{trabalho.lista.visualizar}">View</a></td>
                     </tr>
-
                 </table>
 
-                <ul class="pagination">
-					<li th:each="i : ${#numbers.sequence( 1, trabalhos_pagina.totalPages)}">
+                <p th:if="${trabalhos_pagina.totalPages == 0}" th:text="#{trabalho.sem_trabalho_publicado}"/>
+                <ul th:if="${trabalhos_pagina.totalPages > 0}" class="pagination">
+					 <li th:each="i : ${#numbers.sequence( 1, trabalhos_pagina.totalPages)}">
 						<a th:href="${pagina_url + '&amp;pagina=' + i}"
 						   th:text="${i}"
 						   th:class="${i == trabalhos_pagina.number + 1 ? 'bold' : ''}">-999</a>

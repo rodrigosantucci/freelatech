@@ -23,7 +23,7 @@ public class FeedbackController extends AbstratoController {
     @Autowired
     FeedbackService feedbackService;
 
-    @GetMapping("/{propostId}")
+    @GetMapping("/{propostaId}")
     public String enviar(@PathVariable("propostaId") long propostaId, Model model) throws Exception {
 
         Proposta proposta = propostaService.get(propostaId);
@@ -33,7 +33,7 @@ public class FeedbackController extends AbstratoController {
         }
 
         // Se o o usuário não for o contratante ou contratado não pod
-        if (!PossoPostar(proposta)) {
+        if (!possoPostar(proposta)) {
             throw new Exception("Usuário não é contratante ou contratado deste serviço!");
         }
 
@@ -68,7 +68,7 @@ public class FeedbackController extends AbstratoController {
 
         Proposta proposta = propostaService.get(propostaId);
 
-        if (!PossoPostar(proposta)) {
+        if (!possoPostar(proposta)) {
             throw new Exception("Usuário não é contratante ou contratado deste serviço!");
         }
 
@@ -105,15 +105,15 @@ public class FeedbackController extends AbstratoController {
 
         }
 
-        return "redirect:/feedback/view/" + proposta.getId();
+        return "redirect:/feedback/ver/" + proposta.getId();
     }
 
     @GetMapping("ver/{propostaId}")
-    public String verPropostaFeedbacks(@PathVariable("propostId") long propostaId, Model model) throws Exception {
+    public String verPropostaFeedbacks(@PathVariable("propostaId") long propostaId, Model model) throws Exception {
 
         Proposta proposta = propostaService.get(propostaId);
 
-        if (!PossoPostar(proposta)) {
+        if (!possoPostar(proposta)) {
             throw new Exception("Usuário não é contratante ou contradado deste serviço!");
         }
 
@@ -121,13 +121,13 @@ public class FeedbackController extends AbstratoController {
 
         model.addAttribute("proposta", proposta);
         model.addAttribute("feedback", feedback);
-        model.addAttribute("posso_postar_feedback", !feedbackJaEnviado(feedback) && PossoPostar(proposta));
+        model.addAttribute("pode_postar_feedback", !feedbackJaEnviado(feedback) && possoPostar(proposta));
 
         return "/feedback/ver";
 
     }
 
-    private boolean PossoPostar(Proposta proposta) {
+    private boolean possoPostar(Proposta proposta) {
         Usuario eu = getUsuarioAtual();
         return eu.getId() != proposta.getUsuario().getId() || eu.getId() != proposta.getTrabalho().getAutor().getId();
     }
@@ -143,7 +143,7 @@ public class FeedbackController extends AbstratoController {
     }
 
     private String getMinhaRole(Proposta proposta) {
-        return getUsuarioAtual().getId().equals(proposta.getUsuario().getId()) ? ROLE_CONTRATANTE : ROLE_CLIENTE;
+        return getUsuarioAtual().getId().equals(proposta.getUsuario().getId()) ? ROLE_CLIENTE : ROLE_CONTRATANTE;
     }
 
 }

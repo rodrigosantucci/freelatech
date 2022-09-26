@@ -71,7 +71,7 @@ public class TrabalhoService {
 
         PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.DESC, "id");
 
-        Usuario usuario = (Usuario) filter.get("id");
+        Usuario usuario = (Usuario) filter.get("usuario");
         if (usuario != null) {
             return trabalhoRepository.findByAutor(usuario, request);
         } else {
