@@ -2,16 +2,14 @@ package com.br.freelatech.models;
 
 import javax.persistence.*;
 
-
-
 @Entity
 @Table(name = "tb_proposta")
-public class Proposta{
+public class Proposta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private Double preco;
 
     @Column(length = 255)
@@ -20,11 +18,11 @@ public class Proposta{
     private String dataCriacao;
 
     @Column(length = 64000)
-    private String proposta;
-    
+    private String proposta_texto;
+
     @Column(name = "aceita")
     private int propostaAceita = 0;
-    
+
     @Column(name = "fechado")
     private int fechado = 0;
 
@@ -35,10 +33,6 @@ public class Proposta{
     @ManyToOne
     private Trabalho trabalho;
 
-
-
-
-    
     public void setId(Long id) {
         this.id = id;
     }
@@ -71,31 +65,31 @@ public class Proposta{
         this.dataCriacao = dataCriacao;
     }
 
-    public String getProposta() {
-        return proposta;
+    public String getProposta_texto() {
+        return proposta_texto;
     }
 
-    public void setProposta(String proposta) {
-        this.proposta = proposta;
+    public void setProposta_texto(String proposta_texto) {
+        this.proposta_texto = proposta_texto;
     }
 
     public int getPropostaAceita() {
-		return propostaAceita;
-	}
+        return propostaAceita;
+    }
 
-	public void setPropostaAceita(int propostaAceita) {
-		this.propostaAceita = propostaAceita;
-	}
+    public void setPropostaAceita(int propostaAceita) {
+        this.propostaAceita = propostaAceita;
+    }
 
-	public int getFechado() {
-		return fechado;
-	}
+    public int getFechado() {
+        return fechado;
+    }
 
-	public void setFechado(int fechado) {
-		this.fechado = fechado;
-	}
+    public void setFechado(int fechado) {
+        this.fechado = fechado;
+    }
 
-	public Usuario getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 

@@ -94,7 +94,7 @@ public class TrabalhoController extends AbstratoController {
             minhaProposta = propostaService.getUsuarioPropostaByTrabalho(currentUser, trabalho);
             if (minhaProposta != null) {
                 // New line to <br>
-                minhaProposta.setProposta(FreelatechHelper.nl2br(minhaProposta.getProposta()));
+                minhaProposta.setProposta_texto(FreelatechHelper.nl2br(minhaProposta.getProposta_texto()));
             }
         }
 
