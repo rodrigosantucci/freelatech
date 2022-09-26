@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class FeedbackController extends AbstratoController {
 
     private final String ROLE_CLIENTE = "cliente";
-    private final String ROLE_CONTRATANTE = "contratante";
+    private final String ROLE_CONTRATADO = "contratado";
 
     @Autowired
     PropostaService propostaService;
@@ -32,7 +32,6 @@ public class FeedbackController extends AbstratoController {
             throw new Exception("A proposta não existe");
         }
 
-        // Se o o usuário não for o contratante ou contratado não pod
         if (!possoPostar(proposta)) {
             throw new Exception("Usuário não é contratante ou contratado deste serviço!");
         }
@@ -77,9 +76,7 @@ public class FeedbackController extends AbstratoController {
 
         String minhaRoleParaProposta = getMinhaRole(proposta);
 
-        // If I am contractor (owner of the bid), set client rate&feedback.
-        // Otherwise, I am job owner and I set contractor rate&feedback.
-        if (minhaRoleParaProposta.equals(ROLE_CONTRATANTE)) {
+        if (minhaRoleParaProposta.equals(ROLE_CONTRATADO)) {
             feedback.setClienteFeedback(feedbackTexto);
             feedback.setClienteAvaliacao(avaliacao);
         } else {
@@ -87,13 +84,12 @@ public class FeedbackController extends AbstratoController {
             feedback.setContratanteAvaliacao(avaliacao);
         }
 
-        // If feedback for the bid exists, update it. therwise, insert new.
         Feedback dbFeedback = feedbackService.findByProposta(proposta);
         if (dbFeedback == null) {
             dbFeedback = feedbackService.salvar(feedback); // Insert
         } else {
 
-            if (minhaRoleParaProposta.equals(ROLE_CONTRATANTE)) {
+            if (minhaRoleParaProposta.equals(ROLE_CONTRATADO)) {
                 dbFeedback.setClienteFeedback(feedback.getClienteFeedback());
                 dbFeedback.setClienteAvaliacao(feedback.getClienteAvaliacao());
             } else {
@@ -138,12 +134,19 @@ public class FeedbackController extends AbstratoController {
         }
         String minhaRole = getMinhaRole(feedback.getProposta());
 
-        return (minhaRole.equals(ROLE_CONTRATANTE) && feedback.getClienteAvaliacao() > 0)
-                || (minhaRole.equals(ROLE_CLIENTE) && feedback.getContratanteAvaliacao() > 0);
+        if (feedback.getClienteAvaliacao() != null && feedback.getContratanteAvaliacao() != null) {
+
+            return (minhaRole.equals(ROLE_CONTRATADO) && feedback.getClienteAvaliacao() > 0)
+                    || (minhaRole.equals(ROLE_CLIENTE) && feedback.getContratanteAvaliacao() > 0);
+
+        } else {
+            return false;
+        }
+
     }
 
     private String getMinhaRole(Proposta proposta) {
-        return getUsuarioAtual().getId().equals(proposta.getUsuario().getId()) ? ROLE_CLIENTE : ROLE_CONTRATANTE;
+        return getUsuarioAtual().getId().equals(proposta.getUsuario().getId()) ? ROLE_CONTRATADO : ROLE_CLIENTE;
     }
 
 }

@@ -14,27 +14,28 @@ import org.springframework.stereotype.Repository;
 @Repository("feedbackRepository")
 public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
 
-    Feedback findByProposta(Proposta proposta);
+        Feedback findByProposta(Proposta proposta);
 
-    @Query("SELECT f"
-            + " FROM Feedback f "
-            + " JOIN f.proposta b "
-            + " JOIN b.trabalho j "
-            + " JOIN j.autor u"
-            + " WHERE u = :usuario ")
-    List<Feedback> findByCliente(@Param("usuario") Usuario usuario);
+        @Query("SELECT f"
+                        + " FROM Feedback f "
+                        + " JOIN f.proposta b "
+                        + " JOIN b.trabalho j "
+                        + " JOIN j.autor u"
+                        + " WHERE u = :usuario ")
+        List<Feedback> findByCliente(@Param("usuario") Usuario usuario);
 
-    @Query("SELECT f"
-            + " FROM Feedback f "
-            + " JOIN f.proposta b "
-            + " JOIN b.trabalho j "
-            + " WHERE j = :trabalho ")
-    Feedback findByTrabalho(@Param("trabalho") Trabalho trabalho);
+        @Query("SELECT f"
+                        + " FROM Feedback f "
+                        + " JOIN f.proposta b "
+                        + " JOIN b.trabalho j "
+                        + " WHERE j = :trabalho ")
+        Feedback findByTrabalho(@Param("trabalho") Trabalho trabalho);
 
-    @Query("SELECT f "
-            + "FROM Feedback f "
-            + "JOIN f.proposta b "
-            + "JOIN b.trabalho j "
-            + "WHERE j in (:propostas) ")
-    List<Feedback> findByProposta(@Param("propostas") List<Proposta> propostas);
+        @Query("SELECT f"
+                        + " FROM Feedback f "
+                        + " JOIN f.proposta b "
+                        + " JOIN b.trabalho j "
+                        + " JOIN j.autor u"
+                        + " WHERE b in (:propostas) ")
+        List<Feedback> findByProposta(@Param("propostas") List<Proposta> propostas);
 }

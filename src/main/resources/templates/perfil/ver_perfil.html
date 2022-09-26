@@ -28,7 +28,7 @@
 
 
                 <p>
-	                <a th:href="@{'/trabalho/' + ${feedback.proposta.trabalho.id}}" th:text="${feedback.proposta.trabalho.titulo}"></a>
+	                <a th:href="@{'/trabalho/ver/' + ${feedback.proposta.trabalho.id}}" th:text="${feedback.proposta.trabalho.titulo}"></a>
                 </p>
 
                 <i class="glyphicon glyphicon-star"></i>
@@ -37,7 +37,7 @@
                 <i th:if="${feedback.contratanteAvaliacao &gt; 3}" class="glyphicon glyphicon-star"></i>
                 <i th:if="${feedback.contratanteAvaliacao &gt; 4}" class="glyphicon glyphicon-star"></i>
                 <p>
-	                <span th:text="${feedback.contratante_feedback}"></span>
+	                <span th:text="${feedback.contratanteFeedback}"></span>
                 </p>
                 <hr />
             </div>

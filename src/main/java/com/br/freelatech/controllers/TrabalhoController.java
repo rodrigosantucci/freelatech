@@ -85,15 +85,13 @@ public class TrabalhoController extends AbstratoController {
 
         model.addAttribute("trabalho", trabalho);
 
-        // Get my bid for the job and assign to the view
         Proposta minhaProposta = null;
 
-        // Check if logged in:
         Usuario usuarioAtual = super.getUsuarioAtual();
         if (usuarioAtual != null) {
             minhaProposta = propostaService.getUsuarioPropostaByTrabalho(usuarioAtual, trabalho);
             if (minhaProposta != null) {
-                // New line to <br>
+
                 minhaProposta.setProposta_texto(FreelatechHelper.nl2br(minhaProposta.getProposta_texto()));
             }
         }

@@ -76,8 +76,11 @@ public class PerfilController extends AbstratoController {
         }
 
         List<Proposta> propostasFechadas = propostaService.findByFechadoAndUsuario(1, usuario);
+        if (propostasFechadas.isEmpty()) {
+            propostasFechadas = null;
+        }
 
-        List<Feedback> meusFeedbacks = feedbackService.findByProposta(propostasFechadas);
+        List<Feedback> meusFeedbacks = feedbackService.findByPropostas(propostasFechadas);
         if (meusFeedbacks.isEmpty()) {
             meusFeedbacks = null;
         }
@@ -86,7 +89,7 @@ public class PerfilController extends AbstratoController {
         model.addAttribute("perfil", usuario.getPerfil());
         model.addAttribute("editavel", editavel);
         model.addAttribute("minhasPropostas", minhasPropostas);
-        model.addAttribute("meusFeedbacks", meusFeedbacks);
+        model.addAttribute("meus_feedbacks", meusFeedbacks);
 
         return "/perfil/ver_perfil";
     }

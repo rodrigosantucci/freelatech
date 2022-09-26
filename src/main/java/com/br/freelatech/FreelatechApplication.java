@@ -63,6 +63,7 @@ public class FreelatechApplication implements ApplicationRunner {
 		return slr;
 	}
 
+	@Bean
 	public WebMvcConfigurer configurer() {
 		return new WebMvcConfigurerAdapter() {
 			@Override
