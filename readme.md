@@ -23,7 +23,7 @@
 
 ### 2. Preparar o MySQL
 
-1. Create MySQL database 
+1. Criar MySQL database 
 2. Import freelatech.sql
 
 ### 3. Configurando properties
@@ -41,6 +41,8 @@
 ### 5. Teste
 
 1. Open URL in your browser http://localhost:8080
+
+##DADOS
 2. (Dados para teste) Logar com u1@u1.com / 123456 (Contratante)
 3. (Dados para teste) Logar com u2@u2.com /123456 (Profissional)
 
