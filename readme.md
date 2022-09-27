@@ -42,7 +42,7 @@
 
 1. Open URL in your browser http://localhost:8080
 
-##DADOS
+## DADOS
 2. (Dados para teste) Logar com u1@u1.com / 123456 (Contratante)
 3. (Dados para teste) Logar com u2@u2.com /123456 (Profissional)
 
