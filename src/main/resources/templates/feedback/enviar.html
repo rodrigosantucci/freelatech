@@ -10,7 +10,7 @@
         	<h1 th:text="#{feedback.enviar.titulo}"></h1>
         	
         	<p><span th:text="#{trabalho}" class="bold"></span>: <span th:text="${proposta.trabalho.titulo}"></span></p>
-        	<p><span th:text="#{contratante}" class="bold"></span>: <span th:text="${proposta.usuario.nome}"></span></p>
+        	<p><span th:text="#{contratado}" class="bold"></span>: <span th:text="${proposta.usuario.nome}"></span></p>
     	    
     	    <form method="POST" th:action="@{/feedback/salvar}">
 
